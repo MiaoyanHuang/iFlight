@@ -18,8 +18,7 @@ public class API_Weather_BeiYong {
     private static final String TAG = "api_weather_beiyong";
     private Response response = null;
 
-    public String getWeatherInfo(String City){ //city 就是location 暂用location 测试数据
-
+    public String getWeatherInfo(String City){ 
         String Url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
         String APi_Key = "&key=YXG8QECC3LJPESCQAXLKG27EE";
         String ContentType = "&contentType=json";
