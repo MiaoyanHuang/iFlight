@@ -1,2 +1,0 @@
-# FYP
- Android Mobile Application
