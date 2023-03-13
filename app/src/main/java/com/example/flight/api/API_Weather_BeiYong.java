@@ -12,10 +12,6 @@ import okhttp3.Response;
  * API Name: VisualCrossing Weather API  如果旧的Weather API closed 就使用这个API接口
  * API Website:<a href="https://www.visualcrossing.com/weather-api">...</a>
  * API Key: YXG8QECC3LJPESCQAXLKG27EE
- * Account: 1.I19017857@student.newinti.edu.my
- *          2.1901856099@qq.com
- *          3.h761157417@gmail.com
- * Password: Hmy976231579
  * Note: 1000 times / per day!!!
  */
 public class API_Weather_BeiYong {
