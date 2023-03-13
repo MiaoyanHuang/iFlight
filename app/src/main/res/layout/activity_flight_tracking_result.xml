@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/homepage_background">
+
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:layout_marginTop="10dp"
+      android:layout_marginStart="10dp"
+      android:orientation="horizontal">
+    <Button
+        android:id="@+id/tracking_result_back_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/back_icon"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="2dp"
+          android:text="Flight Tracking"
+          android:textColor="@color/TopicColor"
+          android:textStyle="bold"
+          android:textSize="30sp" />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Flight Tracking"
+          android:textColor="@color/white"
+          android:textStyle="bold"
+          android:textSize="30sp" />
+    </RelativeLayout>
+  </LinearLayout>
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:layout_marginStart="10dp"
+      android:layout_marginEnd="10dp"
+      android:background="@drawable/box">
+
+    <TextView
+        android:id="@+id/tracking_result_flight_no"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:textColor="@color/TopicColor"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        tools:text="MH1234" />
+
+    <LinearLayout
+          android:layout_width="45dp"
+          android:layout_height="40dp"
+          android:layout_marginStart="300dp"
+          android:layout_marginTop="15sp"
+          android:gravity="center_horizontal"
+          android:orientation="vertical">
+        <Button
+            android:id="@+id/tracking_result_favorite_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/favorite_button_icon_favorite"
+            app:backgroundTint="@null" />
+        <TextView
+            android:id="@+id/tracking_result_favorite_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Favorite"
+            android:textSize="12sp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tracking_result_airlineName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tracking_result_flight_no"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        tools:text="Airline Company Name" />
+    <View
+        android:layout_below="@+id/tracking_result_airlineName"
+        android:layout_width="350dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/TopicColor"/>
+
+    <LinearLayout
+        android:id="@+id/tracking_result_ll1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tracking_result_airlineName"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:textColor="@color/black">
+
+      <TextView
+          android:id="@+id/tracking_result_departure"
+          android:layout_width="146dp"
+          android:layout_height="36dp"
+          android:gravity="center"
+          android:textColor="@color/black"
+          tools:text="Airport Name" />
+
+      <TextView
+          android:id="@+id/tracking_result_to"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="20dp"
+          android:text="✈"
+          android:textColor="@color/TopicColor"
+          android:textSize="30sp" />
+
+      <TextView
+          android:id="@+id/tracking_result_arrival"
+          android:layout_width="146dp"
+          android:layout_height="36dp"
+          android:layout_marginStart="20dp"
+          android:gravity="center"
+          android:textColor="@color/black"
+          tools:text="Airport Name" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tracking_result_ll2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tracking_result_ll1"
+        android:orientation="horizontal">
+
+      <TextView
+          android:id="@+id/tracking_result_departure_scheduleTime"
+          android:layout_width="130dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="15dp"
+          android:gravity="center"
+          android:textColor="@color/black"
+          tools:text="2022-12-22 00:00" />
+      <TextView
+          android:layout_width="70dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="5dp"
+          android:text="@string/estimate"
+          android:textColor="@color/black"/>
+      <TextView
+          android:id="@+id/tracking_result_arrival_scheduleTime"
+          android:layout_width="130dp"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:layout_marginStart="5dp"
+          android:textColor="@color/black"
+          tools:text="2022-12-22 00:00" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tracking_result_ll3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tracking_result_ll2"
+        android:orientation="horizontal">
+
+      <TextView
+          android:id="@+id/tracking_result_departure_actualTime"
+          android:layout_width="130dp"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:layout_marginStart="15dp"
+          android:textColor="@color/black"
+          tools:text="2022-12-22 00:00" />
+      <TextView
+          android:layout_width="70dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="5dp"
+          android:gravity="center"
+          android:text="@string/actual"
+          android:textColor="@color/black"/>
+
+      <TextView
+          android:id="@+id/tracking_result_arrival_actualTime"
+          android:layout_width="130dp"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:layout_marginStart="5dp"
+          android:textColor="@color/black"
+          tools:text="2022-12-22 00:00" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_below="@+id/tracking_result_ll3"
+        android:layout_width="350dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:background="#cccacb"/>
+
+    <LinearLayout
+        android:id="@+id/tracking_result_ll4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tracking_result_ll3"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+      <TextView
+          android:id="@+id/tracking_result_departure_terminal_title"
+          android:layout_width="77dp"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:text="DEPARTURE TERMINAL"
+          android:textColor="@color/TopicColor"
+          android:textSize="13sp"
+          android:textStyle="bold" />
+
+      <TextView
+          android:id="@+id/tracking_result_status_title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="70dp"
+          android:text="STATUS"
+          android:textColor="@color/TopicColor"
+          android:textSize="13sp"
+          android:textStyle="bold" />
+
+      <TextView
+          android:id="@+id/tracking_result_arrival_terminal_title"
+          android:layout_width="77dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="70dp"
+          android:gravity="center"
+          android:text="ARRIVAL TERMINAL"
+          android:textColor="@color/TopicColor"
+          android:textSize="13sp"
+          android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tracking_result_ll5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tracking_result_ll4"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+      <TextView
+          android:id="@+id/tracking_result_departure_terminal"
+          android:layout_width="77dp"
+          android:layout_height="match_parent"
+          android:gravity="center"
+          android:textColor="@color/black"
+          android:textStyle="bold"
+          tools:text="1" />
+
+      <TextView
+          android:id="@+id/tracking_result_status"
+          android:layout_width="82dp"
+          android:layout_height="match_parent"
+          android:layout_marginStart="55dp"
+          android:gravity="center"
+          android:textColor="@color/black"
+          android:textStyle="bold"
+          tools:text="Arrived" />
+
+      <TextView
+          android:id="@+id/tracking_result_arrival_terminal"
+          android:layout_width="77dp"
+          android:layout_height="match_parent"
+          android:layout_marginStart="55dp"
+          android:gravity="center"
+          android:textColor="@color/black"
+          android:textStyle="bold"
+          tools:text="1" />
+    </LinearLayout>
+  </RelativeLayout>
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="225dp"
+      android:layout_margin="10dp"
+      android:background="@drawable/flight_tracking_weather_background">
+
+    <TextView
+        android:id="@+id/tracking_result_departure_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:text="City Name" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tracking_result_departure_weather"
+        android:layout_below="@+id/tracking_result_departure_name"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp" />
+  </RelativeLayout>
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="225dp"
+      android:layout_marginStart="10dp"
+      android:layout_marginEnd="10dp"
+      android:background="@drawable/flight_tracking_weather_background">
+
+    <TextView
+        android:id="@+id/tracking_result_arrival_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:text="City Name" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tracking_result_arrival_weather"
+        android:layout_below="@+id/tracking_result_arrival_name"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp" />
+  </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/favorite_primary_layout"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/homepage_background"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context="navigation.favorite.FavoriteFragment">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp">
+        <TextView
+            android:id="@+id/home_title1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="20dp"
+            android:text="Favorite List"
+            android:textColor="@color/TopicColor"
+            android:textStyle="bold"
+            android:textSize="30sp" />
+        <TextView
+            android:id="@+id/home_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="Favorite List"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="30sp" />
+    </RelativeLayout>
+    <View
+        android:layout_width="350dp"
+        android:layout_height="2dp"
+        android:background="@color/white"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/favorite_empty_icon"
+            android:layout_width="300dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="100sp"
+            android:layout_centerHorizontal="true"
+            android:visibility="invisible"
+            android:src="@drawable/favorite_empty" />
+        <TextView
+            android:id="@+id/favorite_empty_text"
+            android:layout_below="@+id/favorite_empty_icon"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:visibility="invisible"
+            android:text="Oh, you haven't favorite any flight yet..."
+            android:textSize="20sp"
+            android:textColor="@color/TopicColor"
+            android:textStyle="italic"
+            android:gravity="center_horizontal" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/favorite_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp" />
+    </RelativeLayout>
+</LinearLayout>
+

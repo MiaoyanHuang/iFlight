@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">iFlight</string>
+    <string name="title_activity_homepage">homepage</string>
+    <string name="title_home">Home</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="title_profile">Profile</string>
+
+    <string name="tracking_result_favorite">Favorite</string>
+    <string name="tracking_result_Cancel">Cancel</string>
+    <string name="estimate"><![CDATA[<Estimate>]]></string>
+    <string name="actual"><![CDATA[<Actual>]]></string>
+
+    <array name="currency">
+        <item>MYR - Malaysian Ringgit</item>
+        <item>CNY - Chinese Yuan</item>
+        <item>JPY - Japanese Yen</item>
+        <item>THB - Thai Baht</item>
+        <item>INR - Indian Rupee</item>
+        <item>KRW - South Korean Won</item>
+        <item>USD - US Dollar</item>
+        <item>AUD - Australian Dollar</item>
+        <item>CAD - Canadian Dollar</item>
+        <item>EUR - Euro</item>
+        <item>GBP - British Pound</item>
+    </array>
+</resources>

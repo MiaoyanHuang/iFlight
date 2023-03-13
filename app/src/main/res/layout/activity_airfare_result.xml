@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/airfare_result_background"
+    tools:context=".Airfare_Result">
+    <LinearLayout
+        android:id="@+id/airfare_result_ll1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/airfare_result_back_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/back_icon"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Airfare Comparison"
+                android:textColor="@color/TopicColor"
+                android:textStyle="bold"
+                android:textSize="30sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Airfare Comparison"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="30sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/airfare_result_noDataIcon"
+        android:layout_width="match_parent"
+        android:layout_height="395dp"
+        android:layout_marginTop="270dp"
+        android:src="@drawable/airfare_result_icon_no_data" />
+
+    <LinearLayout
+        android:id="@+id/airfare_result_ll2"
+        android:layout_below="@+id/airfare_result_ll1"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/box"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/airfare_result_depAirport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:gravity="center"
+            android:textColor="@color/TopicColor"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            tools:text="xxxxxxxxxxxxxxxx airport" />
+
+        <TextView
+            android:id="@+id/airfare_result_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="|"
+            android:textColor="@color/TopicColor"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/airfare_result_arrAirport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:gravity="center"
+            android:textColor="@color/TopicColor"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            tools:text="xxxxxxxxxxxxxxxx airport" />
+
+        <View
+            android:layout_width="340dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="15dp"
+            android:background="#cccacb" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/airfare_result_date"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/green"
+                android:textSize="20sp"
+                android:textStyle="italic"
+                tools:text="2023-01-01" />
+
+            <TextView
+                android:id="@+id/airfare_result_totalResult_title"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="Total Result: "
+                android:textColor="@color/TopicColor"
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/airfare_result_totalResult"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/TopicColor"
+                android:textSize="15sp"
+                android:textStyle="italic"
+                tools:text="10" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/airfare_result_ll3"
+        android:layout_below="@+id/airfare_result_ll2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:background="@drawable/box"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/airfare_result_best"
+            android:layout_width="83dp"
+            android:layout_height="45dp"
+            android:text="Best"
+            android:textSize="13sp"
+            android:textStyle="italic"
+            android:textColor="@color/white" />
+        <Button
+            android:id="@+id/airfare_result_cheap"
+            android:layout_width="83dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="8dp"
+            android:text="Cheap"
+            android:textSize="13sp"
+            android:textStyle="italic"
+            android:textColor="@color/white" />
+        <Button
+            android:id="@+id/airfare_result_fast"
+            android:layout_width="83dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="8dp"
+            android:text="Fast"
+            android:textSize="13sp"
+            android:textStyle="italic"
+            android:textColor="@color/white" />
+        <Button
+            android:id="@+id/airfare_result_direct"
+            android:layout_width="83dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="8dp"
+            android:text="Direct"
+            android:textSize="13sp"
+            android:textStyle="italic"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/airfare_result_airfare_list"
+        android:layout_below="@id/airfare_result_ll3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"/>
+</RelativeLayout>
