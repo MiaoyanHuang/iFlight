@@ -19,7 +19,7 @@ public class API_Flight {
             Request request = new Request.Builder()
                     .url("https://aerodatabox.p.rapidapi.com/flights/number/" + FlightNo + "/" + Date)
                     .get()
-                    .addHeader("X-RapidAPI-Key", "97d7fcce93msh2ceb3df9047f878p123262jsn8e7785cb6117")
+                    .addHeader("X-RapidAPI-Key", "*****************************")
                     .addHeader("X-RapidAPI-Host", "aerodatabox.p.rapidapi.com")
                     .build();
 
