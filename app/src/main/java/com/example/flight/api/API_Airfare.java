@@ -20,7 +20,7 @@ public class API_Airfare {
                             "&departureDate=" + DepartureDate +
                             "&currency=" + Currency)
                     .get()
-                    .addHeader("X-RapidAPI-Key", "97d7fcce93msh2ceb3df9047f878p123262jsn8e7785cb6117")
+                    .addHeader("X-RapidAPI-Key", "*****************************")
                     .addHeader("X-RapidAPI-Host", "skyscanner44.p.rapidapi.com")
                     .build();
             response = client.newCall(request).execute();
