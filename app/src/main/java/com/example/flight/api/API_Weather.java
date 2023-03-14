@@ -17,7 +17,7 @@ public class API_Weather {
             Request request = new Request.Builder()
                     .url("https://yahoo-weather5.p.rapidapi.com/weather?location=" + city_IATA + "&format=json&u=c")
                     .get()
-                    .addHeader("X-RapidAPI-Key", "f946e0f9b1msh260555160e012b3p172592jsn91956cd282e6")
+                    .addHeader("X-RapidAPI-Key", "*****************************")
                     .addHeader("X-RapidAPI-Host", "yahoo-weather5.p.rapidapi.com")
                     .build();
             response = client.newCall(request).execute();
