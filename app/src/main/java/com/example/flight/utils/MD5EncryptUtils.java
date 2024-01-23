@@ -1,10 +1,8 @@
 package com.example.flight.utils;
 
 import java.security.MessageDigest;
-/**
- * Reference Function: MD5 Encrypt
- * Reference From: New API Company(Vero) Given
- */
+
+
 public class MD5EncryptUtils {
     public static String encrypt(String input) {
         try {
