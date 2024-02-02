@@ -1,7 +1,7 @@
 <H1 align = 'center'> FYP(Final Year Project 2023) - Project </H1>
 <H2 align = 'center'> Android Mobile Application </H2>
 
-Hi there. 
+Hi there,
 
 <p>
   Thanks for accessing my GitHub repository. This project was developed mainly using the Java programming language. The main functions include airfare comparison, flight tracking, and weather forecasting.
@@ -21,5 +21,6 @@ Hi there.
 
 Note: This project is used to acdemic proposed only.
 
-Author: Miaoyan Huang | Email: miaoyanhuang0701@gmail.com | University: INTI International University
-
+-----------------------------
+<p>Author: Miaoyan Huang </p>
+<p>Email: miaoyanhuang0701@gmail.com</p> <p>University: INTI International University</p>
