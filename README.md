@@ -1,5 +1,8 @@
-<H1 align = 'center'> FYP(Final Year Project 2023) - Project </H1>
-<H2 align = 'center'> Android Mobile Application </H2>
+<h1 align = 'center'> FYP(Final Year Project 2023) - Project </h1>
+<div align = 'center'>
+    <img src="app/src/main/res/drawable/logo_app.png" width="100" height="100" />
+    <h2 >iFlight - An Android Mobile Application</h2>
+</div>
 
 Hi there,
 
@@ -15,11 +18,18 @@ Hi there,
   * Publication Title: <a href = 'https://ieeexplore.ieee.org/xpl/conhome/1803425/all-proceedings'>2023 IEEE 11th Conference on Systems, Process & Control (ICSPC) </a>
   
   * Paper Title: Empowering Travelers with Airfare Comparison, Flight Tracking, and Real-Time Weather Forecasts on Android
-  ________________________________________________________________________________________________________________________
   After I am notified that my paper has been published, I will come back here to update the link and provide more detailed information.
+  ________________________________________________________________________________________________________________________
+
 </p>
 
 Note: This project is used to acdemic proposed only.
+
+Special thanks to:
+  1. My brother: Yingying Huang for designing the app icon
+  2. Supervisor: Ms. Chong Fong Kim
+  3. My Father, friends and Inti International University
+  4. VeryFlight'S techinical supports
 
 -----------------------------
 <p>Author: Miaoyan Huang </p>
