@@ -1,16 +1,3 @@
 # Default ignored files
 /shelf/
 /workspace.xml
-
-# 忽略 Gradle 生成的临时文件
-.gradle/
-build/
-
-# 忽略 IDE 生成的项目文件
-*.iml
-
-# 忽略本地配置文件
-local.properties
-
-# 忽略日志文件
-*.log

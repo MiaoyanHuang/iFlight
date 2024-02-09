@@ -1,10 +1,6 @@
 <h1 align = 'center'> FYP(Final Year Project 2023) - Project </h1>
 <div align = 'center'>
-<<<<<<< HEAD
-    <img src="app/src/main/res/drawable/app_logo.png" width="618" height="616"  alt="logo"/>
-=======
-    <img src="app/src/main/res/drawable/app_logo.png" width="100" height="100" alt="App Logo"/>
->>>>>>> origin/main
+    <img src="app/src/main/res/drawable/logo_app.png" width="100" height="100" />
     <h2 >iFlight - An Android Mobile Application</h2>
 </div>
 
