@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/homepage_background"
-    tools:context=".Flight_Tracking">
+    android:background="@color/BackgroundColor"
+    tools:context=".Flight_Tracking_Result">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background" />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
         android:orientation="horizontal">
         <Button
@@ -25,16 +30,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
                 android:text="Homepage"
                 android:textColor="@color/TopicColor"
-                android:textStyle="bold"
-                android:textSize="30sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Homepage"
-                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="30sp" />
         </RelativeLayout>
@@ -44,22 +41,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_centerInParent="true"
         android:background="@drawable/box"
         android:layout_margin="20dp">
         <TextView
-            android:id="@+id/airfare_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
             android:text="Flight Tracking"
             android:textColor="@color/TopicColor"
             android:textSize="26sp"
             android:textStyle="bold" />
-
         <TextView
-            android:id="@+id/flight_tracking_flight_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -70,14 +64,16 @@
 
         <EditText
             android:id="@+id/flight_tracking_flight_no_input"
-            android:layout_width="310dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:gravity="center"
             android:layout_marginTop="20sp"
-            android:inputType="textCapCharacters"/>
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:inputType="textCapCharacters" />
 
         <TextView
-            android:id="@+id/flight_tracking_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -88,21 +84,26 @@
 
         <EditText
             android:id="@+id/flight_tracking_date_input"
-            android:layout_width="310dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:inputType="date"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
         <Button
             android:id="@+id/flight_tracking_search_button"
-            android:layout_width="300dp"
-            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_marginTop="30dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginEnd="23dp"
             android:layout_marginBottom="30dp"
             android:layout_gravity="center"
             android:background="@drawable/airfare_detail_bottom_box"
-            android:text="Search Flight"
+            android:text="Track Flight"
             android:textSize="14sp" />
     </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

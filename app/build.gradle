@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.flight'
+    namespace 'hmy.fyp.flight'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.flight"
+        applicationId "hmy.fyp.flight"
         minSdk 21
         targetSdk 33
         versionCode 1

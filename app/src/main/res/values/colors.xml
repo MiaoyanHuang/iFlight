@@ -17,11 +17,9 @@
     <color name="BackgroundColor">#F3F3F3</color>
     <color name="SecondaryColor">#3792FF</color>
 
-    <color name="flight_status_arrived">#0CAC05</color>
-    <color name="flight_status_departed">#0CAC05</color>
-    <color name="flight_status_delayed">#FF6600</color>
-    <color name="flight_status_cancelled">#FF0000</color>
-    <color name="flight_status_unknown">#FF0000</color>
+    <color name="flight_status_normal">#0CAC05</color>
+    <color name="flight_status_delay">#FF6600</color>
+    <color name="flight_status_error">#FF0000</color>
 
     <color name="log_out_button_color">#F43134</color>
 

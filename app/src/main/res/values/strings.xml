@@ -7,8 +7,8 @@
 
     <string name="tracking_result_favorite">Favorite</string>
     <string name="tracking_result_Cancel">Cancel</string>
-    <string name="estimate"><![CDATA[<Estimate>]]></string>
-    <string name="actual"><![CDATA[<Actual>]]></string>
+    <string name="estimate">Estimate</string>
+    <string name="actual">Actual</string>
 
     <array name="currency">
         <item>MYR - Malaysian Ringgit</item>

@@ -6,25 +6,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="@drawable/homepage_background"
+    android:background="@color/BackgroundColor"
     tools:context=".navigation.home.HomeFragment">
 
+    <ImageView
+        android:id="@+id/home_background"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background"/>
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp">
-        <TextView
-            android:id="@+id/home_title1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="20dp"
-            android:text="Homepage"
-            android:textColor="@color/TopicColor"
-            android:textStyle="bold"
-            android:textSize="30sp" />
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
         <TextView
             android:id="@+id/home_title"
             android:layout_width="match_parent"
@@ -33,46 +28,37 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:text="Homepage"
-            android:textColor="@color/white"
+            android:textColor="@color/TopicColor"
             android:textStyle="bold"
             android:textSize="30sp" />
     </RelativeLayout>
     <View
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/white"/>
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/TopicColor"/>
     <RelativeLayout
         android:layout_width="350dp"
         android:layout_height="150dp"
-        android:layout_margin="30dp"
+        android:layout_margin="25dp"
         android:background="@drawable/homepage_edge">
         <ImageView
-            android:layout_width="346dp"
-            android:layout_height="146dp"
+            android:layout_width="348dp"
+            android:layout_height="148dp"
             android:layout_centerInParent="true"
             android:scaleType="fitXY"
-            android:src="@drawable/homepage_airfare_background"/>
-        <LinearLayout
+            android:src="@drawable/homepage_airfare_background" />
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:gravity="center"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/homepage_airfare_icon"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Airfare Comparison"
-                android:textSize="25sp"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-        </LinearLayout>
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="Airfare Comparison"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
         <Button
             android:id="@+id/home_airfare_comparison_button"
             android:layout_width="match_parent"
@@ -85,36 +71,26 @@
         android:layout_height="150dp"
         android:background="@drawable/homepage_edge">
         <ImageView
-            android:layout_width="346dp"
-            android:layout_height="146dp"
+            android:layout_width="348dp"
+            android:layout_height="148dp"
             android:layout_centerInParent="true"
             android:scaleType="fitXY"
             android:src="@drawable/homepage_flight_tracking_background"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="center"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/homepage_flight_tracking_icon"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
                 android:text="Flight Tracking"
                 android:textSize="25sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
-        </LinearLayout>
         <Button
             android:id="@+id/home_flight_tracking_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#00000000" />
+            android:background="#00000000"/>
     </RelativeLayout>
 </LinearLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/airfare_result_background"
+    android:background="@color/BackgroundColor"
     tools:context=".Airfare_Detail">
     <LinearLayout
         android:id="@+id/airfare_detail_ll1"
@@ -19,25 +19,13 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@drawable/back_icon"/>
-        <RelativeLayout
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:text="Airfare Result"
-                android:textColor="@color/TopicColor"
-                android:textStyle="bold"
-                android:textSize="30sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Airfare Result"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="30sp" />
-        </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:text="Airfare Result"
+            android:textColor="@color/TopicColor"
+            android:textStyle="bold"
+            android:textSize="30sp" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/airfare_detail_ll2"
@@ -129,7 +117,7 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:src="@drawable/transfer" />
+                android:src="@drawable/flight_tracking_transfer_icon" />
             <LinearLayout
                 android:id="@+id/airfare_detail_transfer_flightInfo_block"
                 android:visibility="gone"
@@ -168,104 +156,106 @@
             </LinearLayout>
         </LinearLayout>
         <View
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="2dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
             android:layout_marginTop="2dp"
             android:layout_gravity="center"
             android:background="@color/TopicColor" />
-            <LinearLayout
-                android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/airfare_detail_departure_date"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/airfare_detail_departure_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    tools:text="Jan. 01, 2023"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/airfare_detail_departure_weekday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:gravity="center"
-                    tools:text="Thursday"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
-            <LinearLayout
+                tools:text="Jan. 01, 2023"
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/airfare_detail_departure_weekday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_gravity="center"
-                    android:text="●"
-                    android:textSize="15sp"
-                    android:textColor="@color/TopicColor"/>
-                <TextView
-                    android:id="@+id/airfare_detail_departure_time1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    tools:text="12:00"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/airfare_detail_departure_city1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="64dp"
-                    android:layout_marginEnd="10dp"
-                    tools:text="Kuala Lumpur"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
-            <LinearLayout
+                android:gravity="end"
+                tools:text="Thursday"
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="●"
+                android:textSize="15sp"
+                android:textColor="@color/TopicColor"/>
+            <TextView
+                android:id="@+id/airfare_detail_departure_time1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                tools:text="12:00"
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/airfare_detail_departure_city1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_gravity="center"
-                    android:text="●"
-                    android:textSize="15sp"
-                    android:textColor="@color/TopicColor"/>
-                <TextView
-                    android:id="@+id/airfare_detail_arrival_time1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    tools:text="12:00"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/airfare_detail_DelayInDay1"
-                    android:layout_width="14dp"
-                    android:layout_height="match_parent"
-                    tools:text="+1"
-                    android:textSize="12sp"
-                    android:textColor="@color/black" />
-                <TextView
-                    android:id="@+id/airfare_detail_arrival_city1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginEnd="10dp"
-                    tools:text="Kuala Lumpur"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
+                android:gravity="end"
+                tools:text="Kuala Lumpur"
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
+                android:layout_gravity="center"
+                android:text="●"
+                android:textSize="15sp"
+                android:textColor="@color/TopicColor"/>
+            <TextView
+                android:id="@+id/airfare_detail_arrival_time1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                tools:text="12:00"
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/airfare_detail_DelayInDay1"
+                android:layout_width="14dp"
+                android:layout_height="match_parent"
+                tools:text="+1"
+                android:textSize="12sp"
+                android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/airfare_detail_arrival_city1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                tools:text="Kuala Lumpur"
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
 
         <!-- 转机 -->
         <LinearLayout
@@ -275,17 +265,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <LinearLayout
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="35dp"
                 android:layout_gravity="center"
                 android:background="@drawable/airfare_detail_wait_time_background"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="8dp"
                     android:text="Wait Time: "
                     android:textSize="20sp"
                     android:textColor="@color/white"/>
@@ -293,7 +285,7 @@
                     android:id="@+id/airfare_detail_wait_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_marginEnd="8dp"
                     android:gravity="end"
                     tools:text="1h 30m"
                     android:textSize="20sp"
@@ -302,11 +294,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="35dp"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
                     android:layout_gravity="center"
                     android:text="●"
                     android:textSize="15sp"
@@ -328,9 +321,9 @@
                     android:textColor="@color/black" />
                 <TextView
                     android:id="@+id/airfare_detail_departure_city2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
+                    android:gravity="end"
                     tools:text="Kuala Lumpur"
                     android:textSize="20sp"
                     android:textColor="@color/black"/>
@@ -338,12 +331,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="35dp"
                 android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
                     android:layout_gravity="center"
                     android:text="●"
                     android:textSize="15sp"
@@ -365,10 +359,9 @@
                     android:textColor="@color/black" />
                 <TextView
                     android:id="@+id/airfare_detail_arrival_city2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:gravity="center"
+                    android:gravity="end"
                     tools:text="Kuala Lumpur"
                     android:textSize="20sp"
                     android:textColor="@color/black"/>
@@ -426,7 +419,7 @@
                 android:layout_marginTop="1dp"
                 android:src="@drawable/airfare_detail_icon_duration"/>
             <TextView
-                android:layout_width="130dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:text="Total Duration: "
@@ -436,8 +429,6 @@
                 android:id="@+id/airfare_detail_totalDuration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:gravity="center"
                 tools:text="1h 25m "
                 android:textColor="@color/black"
@@ -477,7 +468,7 @@
                 android:gravity="end"
                 android:layout_marginEnd="10dp"
                 android:textColor="@color/airfare_price_color"
-                android:textSize="50sp"
+                android:textSize="45sp"
                 android:text="RM 1,299" />
         </LinearLayout>
         <View
@@ -509,7 +500,7 @@
             android:layout_marginTop="5dp"
             android:orientation="horizontal">
             <TextView
-                android:layout_width="115dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="Change Allowed:"
@@ -523,7 +514,7 @@
                 tools:text="false"
                 android:textColor="@color/orange"/>
             <TextView
-                android:layout_width="145dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="Cancellation Allowed:"

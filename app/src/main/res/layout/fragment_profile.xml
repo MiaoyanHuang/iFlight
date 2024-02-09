@@ -1,87 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:background="@drawable/homepage_background"
     tools:context=".navigation.profile.ProfileFragment">
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp">
-        <TextView
-            android:id="@+id/home_title1"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@color/BackgroundColor">
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/background" />
+        <TextView
+            android:id="@+id/favorite_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="20dp"
-            android:text="Profile"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="User Profile"
             android:textColor="@color/TopicColor"
             android:textStyle="bold"
             android:textSize="30sp" />
-        <TextView
-            android:id="@+id/home_title"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_height="2dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:text="Profile"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="30sp" />
-    </RelativeLayout>
-    <View
-        android:layout_width="350dp"
-        android:layout_height="2dp"
-        android:background="@color/white"/>
-    <LinearLayout
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/box"
-        android:orientation="vertical">
-        <ImageView
-            android:id="@+id/profile_user_photo"
-            android:layout_width="280dp"
-            android:layout_height="280dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="35dp"
-            android:layout_marginBottom="35dp"
-            android:scaleType="centerCrop"
-            tools:src="@drawable/homepage_background" />
-        <View
-            android:layout_width="350dp"
-            android:layout_height="2dp"
-            android:background="#cccacb"/>
-        <TextView
-            android:id="@+id/profile_user_name"
-            android:layout_width="220dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_gravity="center"
+            android:background="@color/TopicColor"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
             android:gravity="center"
-            tools:text="User Name"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="25sp" />
+            android:layout_marginBottom="130dp">
+            <LinearLayout
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/box"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/profile_user_photo"
+                    android:layout_width="245dp"
+                    android:layout_height="245dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/background" />
+                <View
+                    android:layout_width="350dp"
+                    android:layout_height="2dp"
+                    android:background="#cccacb"/>
+                <TextView
+                    android:id="@+id/profile_user_name"
+                    android:layout_width="220dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    tools:text="User Name"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="25sp" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-
     <Button
         android:id="@+id/profile_logout_button"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginTop="70dp"
-        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="75dp"
         android:text="Log Out"
         android:textSize="14sp"
         app:backgroundTint="@color/log_out_button_color"
         android:background="@drawable/airfare_detail_bottom_box" />
-
-</LinearLayout>
+</RelativeLayout>
