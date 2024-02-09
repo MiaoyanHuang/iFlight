@@ -28,8 +28,8 @@ Note: This project is used to acdemic proposed only.
 Special thanks to:
   1. My brother: Yingying Huang for designing the app icon
   2. Supervisor: Ms. Chong Fong Kim
-  3. My Father, friends and Inti International University
-  4. VeryFlight'S techinical supports
+  3. My Father, friends and INTI International University
+  4. VeryFlight's techinical supports
 
 -----------------------------
 <p>Author: Miaoyan Huang </p>
