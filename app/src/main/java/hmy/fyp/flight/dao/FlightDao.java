@@ -1,8 +1,10 @@
 package hmy.fyp.flight.dao;
 
 import android.util.Log;
+
 import hmy.fyp.flight.entity.Flight;
 import hmy.fyp.flight.utils.JDBCUtils;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,8 +19,7 @@ public class FlightDao {
      * Function: Favorite Flight
      */
     public void favoriteFlight(Flight flight, String id) {
-        Connection connection = JDBCUtils.getConn();
-        try{
+        try (Connection connection = JDBCUtils.getConn()) {
             String sql = "insert into favorite(flight_no,flight_date,flight_airline," +
                     "flight_depAirport,flight_depTime,flight_arrAirport,flight_arrTime,user_id) " +
                     "values(?,?,?,?,?,?,?,?)";
@@ -45,9 +46,8 @@ public class FlightDao {
     /**
      * Function: Delete Favorite Flight
      */
-    public void deleteFavoriteFlight(String flightNo,String flightDate,String id) {
-        Connection connection = JDBCUtils.getConn();
-        try{
+    public void deleteFavoriteFlight(String flightNo, String flightDate, String id) {
+        try (Connection connection = JDBCUtils.getConn()) {
             String sql = "delete from favorite where flight_no = ? and flight_date = ? and user_id = ?";
             if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement(sql);
@@ -67,14 +67,13 @@ public class FlightDao {
     /**
      * Function: Check Favorite Flight
      */
-    public boolean checkFavoriteFlight(String flight_No, String flight_Date, String id){
-        Connection connection = JDBCUtils.getConn();
-        try{
+    public boolean checkFavoriteFlight(String flight_No, String flight_Date, String id) {
+        try (Connection connection = JDBCUtils.getConn()) {
             String sql = "select * from favorite where flight_no = ? and flight_date = ? and user_id = ?";
             if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement(sql);
                 if (ps != null) {
-                    ps.setString(1, flight_No );
+                    ps.setString(1, flight_No);
                     ps.setString(2, flight_Date);
                     ps.setString(3, id);
                     ResultSet rs = ps.executeQuery();
@@ -91,10 +90,9 @@ public class FlightDao {
     /**
      * Function: Search and Get Favorite Flight
      */
-    public List<Flight> searchFavoriteFlight(int user_id){
+    public List<Flight> searchFavoriteFlight(int user_id) {
         List<Flight> flightList = new ArrayList<>();
-        Connection connection = JDBCUtils.getConn();
-        try{
+        try (Connection connection = JDBCUtils.getConn()) {
             String sql = "select * from favorite where user_id = ?";
             if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement(sql);

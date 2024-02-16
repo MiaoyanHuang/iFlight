@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import hmy.fyp.flight.api.API_Airfare;
@@ -56,7 +57,7 @@ public class Airfare extends AppCompatActivity {
      */
     private final Handler handler_airfare = new Handler(Looper.myLooper()) {
         @Override
-        public void handleMessage(Message msg) {
+        public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             if (msg.what == 1) {
                 progressDialogBox(0);
@@ -222,7 +223,7 @@ public class Airfare extends AppCompatActivity {
         }
     }
 
-    private String testJson(){
+    private String testJson() {
         return "{\n" +
                 "    \"context\":{\n" +
                 "        \"status\":\"incomplete\",\n" +
@@ -231,7 +232,7 @@ public class Airfare extends AppCompatActivity {
                 "    },\n" +
                 "    \"itineraries\":{\n" +
                 "        \"buckets\":[\n" +
-                "{"+
+                "{" +
                 "}," +
                 "            {\n" +
                 "                \"id\":\"Cheapest\",\n" +

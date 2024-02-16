@@ -5,12 +5,14 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
+
 import androidx.core.content.ContextCompat;
 
 import hmy.fyp.flight.R;
 import hmy.fyp.flight.entity.User;
 import hmy.fyp.flight.utils.ImageBase64Utils;
 import hmy.fyp.flight.utils.JDBCUtils;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,10 +24,9 @@ public class UserDao {
 
     /**
      * Function: Login
-     * */
-    public boolean login(String userAccount, String userPassword){
-        Connection connection = JDBCUtils.getConn();
-        try {
+     */
+    public boolean login(String userAccount, String userPassword) {
+        try (Connection connection = JDBCUtils.getConn()) {
             String sql = "select * from user where userAccount = ? and userPassword = ?";
             if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement(sql);
@@ -36,7 +37,7 @@ public class UserDao {
                     return rs.next();
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "Exception Message of Login: " + e.getMessage());
         }
@@ -45,26 +46,25 @@ public class UserDao {
 
     /**
      * Function: Register
-     * */
-    public boolean register(User user, Context context){
-        Connection connection = JDBCUtils.getConn();
-        try {
+     */
+    public boolean register(User user, Context context) {
+        try (Connection connection = JDBCUtils.getConn()) {
             String sql = "insert into user(userAccount,userPassword,userName,photo) values (?,?,?,?)";
-            if (connection != null){
+            if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement(sql);
-                if (ps != null){
+                if (ps != null) {
                     Drawable drawable = ContextCompat.getDrawable(context, R.drawable.user_icon);
                     Bitmap bitmap = ((BitmapDrawable) Objects.requireNonNull(drawable)).getBitmap();
                     String imageEncoded = ImageBase64Utils.imageToBase64(bitmap);
-                    ps.setString(1,user.getUserAccount());
-                    ps.setString(2,user.getUserPassword());
-                    ps.setString(3,user.getUserName());
-                    ps.setString(4,imageEncoded);
+                    ps.setString(1, user.getUserAccount());
+                    ps.setString(2, user.getUserPassword());
+                    ps.setString(3, user.getUserName());
+                    ps.setString(4, imageEncoded);
                     ps.executeUpdate();
                     return true;
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "Exception Message of Register: " + e.getMessage());
         }
@@ -73,12 +73,11 @@ public class UserDao {
 
     /**
      * Function: Query Exist User Account When User Register
-     * */
+     */
     public Boolean queryAccount(String userAccount) {
-        Connection connection = JDBCUtils.getConn();
-        try {
+        try (Connection connection = JDBCUtils.getConn()) {
             String sql = "select * from user where userAccount = ?";
-            if (connection != null){
+            if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement(sql);
                 if (ps != null) {
                     ps.setString(1, userAccount);
@@ -86,7 +85,7 @@ public class UserDao {
                     return rs.next();
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "Exception Message of Query Account：" + e.getMessage());
         }
@@ -95,13 +94,12 @@ public class UserDao {
 
     /**
      * Function: Get User's Data
-     * */
+     */
     public User getUserData(String userAccount) {
-        Connection connection = JDBCUtils.getConn();
         User user_account = null;
-        try {
+        try (Connection connection = JDBCUtils.getConn()) {
             String sql = "select * from user where userAccount = ?";
-            if (connection != null){
+            if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement(sql);
                 if (ps != null) {
                     ps.setString(1, userAccount);
@@ -115,7 +113,7 @@ public class UserDao {
                     }
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "Exception Message of get User Data：" + e.getMessage());
         }
@@ -124,12 +122,11 @@ public class UserDao {
 
     /**
      * Function: Upload / Update User's Photo
-     * */
+     */
     public boolean uploadPhoto(String user_id, String imageEncoded) {
-        Connection connection = JDBCUtils.getConn();
-        try {
+        try (Connection connection = JDBCUtils.getConn()) {
             String sql = "update user set photo = ? where id = ?";
-            if (connection != null){
+            if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement(sql);
                 if (ps != null) {
                     ps.setString(1, imageEncoded);
@@ -138,7 +135,7 @@ public class UserDao {
                     return true;
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "Exception Message of Upload Photo" + e.getMessage());
         }
@@ -147,13 +144,12 @@ public class UserDao {
 
     /**
      * Function: Get User's Photo
-     * */
+     */
     public String getPhoto(String user_id) {
-        Connection connection = JDBCUtils.getConn();
         String imageEncoded = null;
-        try {
+        try (Connection connection = JDBCUtils.getConn()) {
             String sql = "select photo from user where id = ?";
-            if (connection != null){
+            if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement(sql);
                 if (ps != null) {
                     ps.setString(1, user_id);
@@ -163,7 +159,7 @@ public class UserDao {
                     }
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "Exception Message of Get Photo" + e.getMessage());
         }

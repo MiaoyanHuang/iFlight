@@ -1,8 +1,10 @@
 package hmy.fyp.flight.dao;
 
 import android.util.Log;
+
 import hmy.fyp.flight.entity.Airport;
 import hmy.fyp.flight.utils.JDBCUtils;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,10 +18,9 @@ public class AirportDao {
     /**
      * Function: Get All Airports From  MySQL Database
      */
-    public List<Airport> getAirport(){
+    public List<Airport> getAirport() {
         List<Airport> airportList = new ArrayList<>();
-        Connection connection = JDBCUtils.getConn();
-        try{
+        try (Connection connection = JDBCUtils.getConn()) {
             String sql = "select * from airport order by Country, Airport_Name";
             if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement(sql);
@@ -44,17 +45,16 @@ public class AirportDao {
     /**
      * Function: Search Airport By User Inputted Keyword
      */
-    public List<Airport> searchAirport(String searchInput){
+    public List<Airport> searchAirport(String searchInput) {
         List<Airport> airportList = new ArrayList<>();
-        Connection connection = JDBCUtils.getConn();
-        try{
+        try (Connection connection = JDBCUtils.getConn()) {
             String sql = "select * from airport where Airport_Name LIKE ? or IATA_Code LIKE ? or Country LIKE ?";
             if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement(sql);
                 if (ps != null) {
-                    ps.setString(1, "%"+searchInput+"%");
-                    ps.setString(2, "%"+searchInput+"%");
-                    ps.setString(3, "%"+searchInput+"%");
+                    ps.setString(1, "%" + searchInput + "%");
+                    ps.setString(2, "%" + searchInput + "%");
+                    ps.setString(3, "%" + searchInput + "%");
                     ResultSet rs = ps.executeQuery();
                     while (rs.next()) {
                         Airport airport = new Airport();
