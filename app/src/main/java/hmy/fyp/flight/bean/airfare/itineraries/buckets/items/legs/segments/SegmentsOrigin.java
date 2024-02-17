@@ -1,7 +1,10 @@
 package hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs.segments;
 
-import hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs.segments.segmentsOrigin.OriginParent;
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
+
+import hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs.segments.segmentsOrigin.OriginParent;
 
 public class SegmentsOrigin {
 
@@ -28,6 +31,7 @@ public class SegmentsOrigin {
     }
 
 
+    @NonNull
     @Override
     public String toString() {
         return "SegmentsOrigin{" +

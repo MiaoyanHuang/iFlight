@@ -1,6 +1,7 @@
 package hmy.fyp.flight.navigation.home;
 
 import static android.content.Context.MODE_PRIVATE;
+
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,9 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
 import hmy.fyp.flight.Airfare;
 import hmy.fyp.flight.Flight_Tracking;
 import hmy.fyp.flight.Login;
@@ -25,6 +28,7 @@ import hmy.fyp.flight.databinding.FragmentHomeBinding;
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 

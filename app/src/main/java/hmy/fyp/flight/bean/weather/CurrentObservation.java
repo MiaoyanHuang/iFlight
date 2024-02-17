@@ -1,5 +1,7 @@
 package hmy.fyp.flight.bean.weather;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class CurrentObservation {
@@ -54,6 +56,7 @@ public class CurrentObservation {
         this.condition = condition;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "CurrentObservation{" +

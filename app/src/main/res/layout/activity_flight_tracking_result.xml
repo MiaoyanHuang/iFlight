@@ -280,7 +280,7 @@
             android:textColor="@color/TopicColor"
             android:textSize="15sp"
             android:textStyle="bold" />
-        <hmy.fyp.flight.utils.MarqueeTextViewUtils
+        <hmy.fyp.flight.utils.MarqueeTextViewUtil
             android:id="@+id/tracking_result_status"
             android:layout_width="100dp"
             android:layout_height="20dp"
@@ -309,7 +309,7 @@
             android:textColor="@color/TopicColor"
             android:textSize="15sp"
             android:textStyle="bold" />
-        <hmy.fyp.flight.utils.MarqueeTextViewUtils
+        <hmy.fyp.flight.utils.MarqueeTextViewUtil
             android:id="@+id/tracking_result_checkIn"
             android:layout_width="75dp"
             android:layout_height="20dp"

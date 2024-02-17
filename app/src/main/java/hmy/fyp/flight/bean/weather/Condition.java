@@ -1,6 +1,8 @@
 package hmy.fyp.flight.bean.weather;
 
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Condition {
@@ -35,6 +37,7 @@ public class Condition {
         this.code = code;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Condition{" +

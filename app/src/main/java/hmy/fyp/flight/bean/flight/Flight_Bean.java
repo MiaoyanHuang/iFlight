@@ -1,5 +1,7 @@
 package hmy.fyp.flight.bean.flight;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Flight_Bean {
@@ -235,6 +237,7 @@ public class Flight_Bean {
         VeryZhunReadyArrtimeDate = veryZhunReadyArrtimeDate;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Flight_Bean{" +

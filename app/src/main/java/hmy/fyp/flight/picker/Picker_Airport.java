@@ -1,7 +1,9 @@
 package hmy.fyp.flight.picker;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,7 +16,9 @@ import hmy.fyp.flight.R;
 import hmy.fyp.flight.adapter.Adapter_PickerList;
 import hmy.fyp.flight.dao.AirportDao;
 import hmy.fyp.flight.entity.Airport;
+
 import java.util.List;
+import java.util.Objects;
 
 public class Picker_Airport extends AppCompatActivity {
     private ListView picker_list;
@@ -69,9 +73,9 @@ public class Picker_Airport extends AppCompatActivity {
     /**
      * Function: Handle for Picker List
      */
-    private final Handler handler_picker = new Handler(Looper.myLooper()){
+    private final Handler handler_picker = new Handler(Objects.requireNonNull(Looper.myLooper())) {
         @Override
-        public void handleMessage(android.os.Message msg) {
+        public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             if (msg.what == 0) {
                 List<Airport> airportInfo = (List<Airport>) msg.obj;
@@ -86,7 +90,7 @@ public class Picker_Airport extends AppCompatActivity {
     /**
      * Function: Display Airport List
      */
-    private void displayAirport(List<Airport> airportInfo){
+    private void displayAirport(List<Airport> airportInfo) {
         Adapter_PickerList adapter = new Adapter_PickerList(Picker_Airport.this, airportInfo);
         picker_list.setAdapter(adapter);
 
@@ -98,7 +102,7 @@ public class Picker_Airport extends AppCompatActivity {
 
             Intent Intent = new Intent();
             Intent.putExtra("IATA_Code", IATA_Code);
-            Intent.putExtra("AirportName",AirportName);
+            Intent.putExtra("AirportName", AirportName);
             Intent.putExtra("Request_Code", RequestCode);
             setResult(RESULT_OK, Intent);
             finish();
@@ -109,8 +113,8 @@ public class Picker_Airport extends AppCompatActivity {
      * Function: Get All Airports from MySQL Database
      */
     private void getAirports() {
-        new Thread(){
-            public void run(){
+        new Thread() {
+            public void run() {
                 AirportDao airportDao = new AirportDao();
                 Message msg = new Message();
                 List<Airport> airportInfo = airportDao.getAirport();
@@ -128,9 +132,9 @@ public class Picker_Airport extends AppCompatActivity {
     /**
      * Function: Search Airport By User Inputted Keyword in Search Bar
      */
-    private void searchAirport(String userInput){
-        new Thread(){
-            public void run(){
+    private void searchAirport(String userInput) {
+        new Thread() {
+            public void run() {
                 AirportDao airportDao = new AirportDao();
                 Message msg = new Message();
                 List<Airport> airportInfo = airportDao.searchAirport(userInput);

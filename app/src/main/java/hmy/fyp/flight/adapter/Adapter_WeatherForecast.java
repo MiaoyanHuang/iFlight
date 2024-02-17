@@ -7,15 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import hmy.fyp.flight.R;
-import hmy.fyp.flight.bean.weather.Forecast;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import hmy.fyp.flight.R;
+import hmy.fyp.flight.bean.weather.Forecast;
 
 public class Adapter_WeatherForecast extends RecyclerView.Adapter<Adapter_WeatherForecast.WeatherViewHolder> {
 
@@ -49,15 +51,13 @@ public class Adapter_WeatherForecast extends RecyclerView.Adapter<Adapter_Weathe
 
     @Override
     public int getItemCount() { // return the number of data
-        if (mForecast == null) {
-            return 0;
-        }
-        return mForecast.size();
+        return mForecast == null ? 0 : mForecast.size();
     }
 
     public static class WeatherViewHolder extends RecyclerView.ViewHolder { // ViewHolder
-        TextView rv_temperature, rv_weather, rv_date, rv_week, rv_tem_low_high;
-        ImageView rv_icon;
+        private final TextView rv_temperature, rv_weather, rv_date, rv_week, rv_tem_low_high;
+        private final ImageView rv_icon;
+
         public WeatherViewHolder(@NonNull View itemView) {
             super(itemView);
             rv_temperature = itemView.findViewById(R.id.rv_temperature);
@@ -69,7 +69,7 @@ public class Adapter_WeatherForecast extends RecyclerView.Adapter<Adapter_Weathe
         }
     }
 
-    public String transformTimeStamp(String time){ // 将时间戳转换为日期
+    public String transformTimeStamp(String time) { // 将时间戳转换为日期
         long timestamp = Long.parseLong(time);
 
         SimpleDateFormat formatter = new SimpleDateFormat("MMM dd", Locale.US);  // Create a SimpleDateFormat object with the desired date/time format
@@ -78,7 +78,7 @@ public class Adapter_WeatherForecast extends RecyclerView.Adapter<Adapter_Weathe
     }
 
     private String getCorrectWeekName(String day) { // 将星期几转换为full name
-        String week ;
+        String week;
         switch (day) {
             case "Mon":
                 week = "Monday";

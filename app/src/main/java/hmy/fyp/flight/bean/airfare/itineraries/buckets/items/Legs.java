@@ -1,12 +1,15 @@
 package hmy.fyp.flight.bean.airfare.itineraries.buckets.items;
 
+import androidx.annotation.NonNull;
+
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
 import hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs.Carriers;
 import hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs.Destination;
 import hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs.Origin;
 import hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs.Segments;
-import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 public class Legs {
 
@@ -133,6 +136,7 @@ public class Legs {
         this.segments = segments;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Legs{" +

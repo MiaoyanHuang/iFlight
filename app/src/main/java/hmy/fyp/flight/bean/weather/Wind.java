@@ -1,5 +1,7 @@
 package hmy.fyp.flight.bean.weather;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Wind {
@@ -35,6 +37,7 @@ public class Wind {
         this.speed = speed;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Wind{" +

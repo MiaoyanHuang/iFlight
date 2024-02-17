@@ -1,5 +1,7 @@
 package hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs.segments;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class OperatingCarrier {
@@ -47,6 +49,7 @@ public class OperatingCarrier {
         this.allianceId = allianceId;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "OperatingCarrier{" +

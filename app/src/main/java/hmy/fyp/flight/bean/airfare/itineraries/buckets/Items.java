@@ -1,12 +1,15 @@
 package hmy.fyp.flight.bean.airfare.itineraries.buckets;
 
+import androidx.annotation.NonNull;
+
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
 import hmy.fyp.flight.bean.airfare.itineraries.buckets.items.FarePolicy;
 import hmy.fyp.flight.bean.airfare.itineraries.buckets.items.Legs;
 import hmy.fyp.flight.bean.airfare.itineraries.buckets.items.Price;
 import hmy.fyp.flight.bean.airfare.itineraries.buckets.items.PricingOptions;
-import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 public class Items {
 
@@ -142,6 +145,7 @@ public class Items {
         this.deeplink = deeplink;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Items{" +

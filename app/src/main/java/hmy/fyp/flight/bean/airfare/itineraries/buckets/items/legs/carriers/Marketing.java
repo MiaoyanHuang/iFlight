@@ -1,6 +1,8 @@
 package hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs.carriers;
 
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Marketing {
@@ -38,6 +40,7 @@ public class Marketing {
         this.name = name;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Marketing{" +

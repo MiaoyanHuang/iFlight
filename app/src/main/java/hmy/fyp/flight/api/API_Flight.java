@@ -2,7 +2,7 @@ package hmy.fyp.flight.api;
 
 import android.util.Log;
 
-import hmy.fyp.flight.utils.MD5EncryptUtils;
+import hmy.fyp.flight.utils.EncryptUtil;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -26,7 +26,7 @@ public class API_Flight {
         String Lang = "lang=en";
         String APIKey = "*";
         String Parameter = AppID + "&date=" + Date + "&fnum=" + FlightNo + "&" + Lang;
-        String Token = MD5EncryptUtils.encrypt(MD5EncryptUtils.encrypt(Parameter + APIKey));
+        String Token = EncryptUtil.encrypt(EncryptUtil.encrypt(Parameter + APIKey, EncryptUtil.MD5), EncryptUtil.MD5);
         Log.d(TAG, "getFlightInfo_NewAPI: " + Parameter + ", token=" + Token);
 
         OkHttpClient client = new OkHttpClient();

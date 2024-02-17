@@ -2,11 +2,6 @@ package hmy.fyp.flight;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,13 +14,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import hmy.fyp.flight.adapter.Adapter_WeatherForecast;
-import hmy.fyp.flight.bean.flight.Flight_Bean;
-import hmy.fyp.flight.bean.weather.Forecast;
-import hmy.fyp.flight.bean.weather.Weather_Bean;
-import hmy.fyp.flight.dao.FlightDao;
-import hmy.fyp.flight.entity.Flight;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.gson.Gson;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,10 +29,17 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import hmy.fyp.flight.adapter.Adapter_WeatherForecast;
+import hmy.fyp.flight.bean.flight.Flight_Bean;
+import hmy.fyp.flight.bean.weather.Forecast;
+import hmy.fyp.flight.bean.weather.Weather_Bean;
+import hmy.fyp.flight.dao.FlightDao;
+import hmy.fyp.flight.entity.Flight;
+
 public class Flight_Tracking_Result extends AppCompatActivity {
 
     private TextView tracking_result_flight_no;
-    private TextView tracking_result_status,tracking_result_checkIn, tracking_result_gate, tracking_result_baggage;
+    private TextView tracking_result_status, tracking_result_checkIn, tracking_result_gate, tracking_result_baggage;
     private TextView tracking_result_airlineName;
     private TextView tracking_result_departure;
     private TextView tracking_result_departure_time_type, tracking_result_departure_time;
@@ -98,7 +100,7 @@ public class Flight_Tracking_Result extends AppCompatActivity {
     /**
      * Function: Handler for tracking result
      */
-    private final Handler handler = new Handler(Objects.requireNonNull(Looper.myLooper())){
+    private final Handler handler = new Handler(Objects.requireNonNull(Looper.myLooper())) {
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
@@ -132,14 +134,16 @@ public class Flight_Tracking_Result extends AppCompatActivity {
 
         displayFlightInfo(flight_info);
 
-        if(DepartureWeather_info.contains("message") || DepartureWeather_info.equals("Connection error or time out")) {
+        if (DepartureWeather_info != null && DepartureWeather_info.contains("message")
+                || Objects.equals(DepartureWeather_info, "Connection error or time out")) {
             tracking_result_departure_name.setText("No Weather Information");
             Toast.makeText(this, "Didn't find weather information or Internet error", Toast.LENGTH_SHORT).show();
         } else {
             displayDepartureWeatherInfo(DepartureWeather_info);
         }
 
-        if (ArrivalWeather_info.contains("message") || ArrivalWeather_info.equals("Connection error or time out")){
+        if (ArrivalWeather_info != null && ArrivalWeather_info.contains("message")
+                || Objects.equals(ArrivalWeather_info, "Connection error or time out")) {
             tracking_result_arrival_name.setText("No Weather Information");
             Toast.makeText(this, "Didn't find weather information or Internet error", Toast.LENGTH_SHORT).show();
         } else {
@@ -175,17 +179,17 @@ public class Flight_Tracking_Result extends AppCompatActivity {
         String scheduledArrivalDateTime = flightData.getFlightArrtimePlanDate();
 
         String departureTime;
-        if(!flightData.getFlightDeptimeDate().equals("")){
+        if (!flightData.getFlightDeptimeDate().equals("")) {
             String departureTimeDate = flightData.getFlightDeptimeDate();
             departureTime = departureTimeDate.substring(11, 16);
             tracking_result_departure_time_type.setText(R.string.actual);
-            tracking_result_departure_delayDay.setText(compareDate(scheduledDepartureDateTime,departureTimeDate));
+            tracking_result_departure_delayDay.setText(compareDate(scheduledDepartureDateTime, departureTimeDate));
         } else {
             if (!flightData.getVeryZhunReadyDeptimeDate().equals("") && !flightData.getVeryZhunReadyArrtimeDate().equals("")) {
                 String departureTimeDate = flightData.getVeryZhunReadyDeptimeDate();
                 departureTime = departureTimeDate.substring(11, 16);
                 tracking_result_departure_time_type.setText(R.string.estimate);
-                tracking_result_departure_delayDay.setText(compareDate(scheduledDepartureDateTime,departureTimeDate));
+                tracking_result_departure_delayDay.setText(compareDate(scheduledDepartureDateTime, departureTimeDate));
             } else {
                 departureTime = "--:--";
                 tracking_result_departure_time_type.setText(R.string.estimate);
@@ -197,13 +201,13 @@ public class Flight_Tracking_Result extends AppCompatActivity {
             String arrivalTimeDate = flightData.getFlightArrtimeDate();
             arrivalTime = arrivalTimeDate.substring(11, 16);
             tracking_result_arrival_time_type.setText(R.string.actual);
-            tracking_result_arrival_delayDay.setText(compareDate(scheduledArrivalDateTime,arrivalTimeDate));
+            tracking_result_arrival_delayDay.setText(compareDate(scheduledArrivalDateTime, arrivalTimeDate));
         } else {
             if (!flightData.getVeryZhunReadyDeptimeDate().equals("") && !flightData.getVeryZhunReadyArrtimeDate().equals("")) {
                 String arrivalTimeDate = flightData.getVeryZhunReadyArrtimeDate();
                 arrivalTime = arrivalTimeDate.substring(11, 16);
                 tracking_result_arrival_time_type.setText(R.string.estimate);
-                tracking_result_arrival_delayDay.setText(compareDate(scheduledArrivalDateTime,arrivalTimeDate));
+                tracking_result_arrival_delayDay.setText(compareDate(scheduledArrivalDateTime, arrivalTimeDate));
             } else {
                 arrivalTime = "--:--";
                 tracking_result_arrival_time_type.setText(R.string.estimate);
@@ -216,21 +220,21 @@ public class Flight_Tracking_Result extends AppCompatActivity {
 
         //Check in table, Board Gate, Baggage
         String checkIn;
-        if(!flightData.getCheckinTable().equals("")){
+        if (!flightData.getCheckinTable().equals("")) {
             checkIn = flightData.getCheckinTable();
         } else {
             checkIn = "--";
         }
 
         String boardGate;
-        if(!flightData.getBoardGate().equals("")){
+        if (!flightData.getBoardGate().equals("")) {
             boardGate = flightData.getBoardGate();
         } else {
             boardGate = "--";
         }
 
         String baggage;
-        if(!flightData.getBaggageID().equals("")){
+        if (!flightData.getBaggageID().equals("")) {
             baggage = flightData.getBaggageID();
         } else {
             baggage = "--";
@@ -294,14 +298,14 @@ public class Flight_Tracking_Result extends AppCompatActivity {
     /**
      * Function: Compare the Actual Time and the Estimate Time
      */
-    public String compareDate(String estimateDate,String actualDate){
+    public String compareDate(String estimateDate, String actualDate) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         Date d1;
         Date d2;
         try {
             d1 = df.parse(estimateDate);
             d2 = df.parse(actualDate);
-            if(d1!=null && d2!=null) {
+            if (d1 != null && d2 != null) {
                 long diff = d2.getTime() - d1.getTime();
                 if (diff == 0) {
                     return "";
@@ -366,39 +370,33 @@ public class Flight_Tracking_Result extends AppCompatActivity {
         String flight_Date = intent.getStringExtra("flight_date");
         String text = tracking_result_favorite_text.getText().toString();
         if (text.equals("Cancel")) {
-            new Thread() {
-                @Override
-                public void run() {
-                    flightDao.deleteFavoriteFlight(flight_No,flight_Date,user_id); // Delete
-                    message.what = 2;
-                    checkFavorite();
-                    handler.sendMessage(message);
-                }
-            }.start();
+            new Thread(() -> {
+                flightDao.deleteFavoriteFlight(flight_No, flight_Date, user_id); // Delete
+                message.what = 2;
+                checkFavorite();
+                handler.sendMessage(message);
+            }).start();
         } else {
-            new Thread() {
-                @Override
-                public void run() {
-                    String flight_AirlineName = tracking_result_airlineName.getText().toString();
-                    String flight_ScheduleDepartureTime = tracking_result_departure_planTime.getText().toString();
-                    String flight_ScheduleArrivalTime = tracking_result_arrival_planTime.getText().toString();
-                    String flight_DepartureAirportName = tracking_result_departure.getText().toString();
-                    String flight_ArrivalAirportName = tracking_result_arrival.getText().toString();
-                    //set data
-                    Flight flight = new Flight();
-                    flight.setFlight_No(flight_No);
-                    flight.setFlight_Date(flight_Date);
-                    flight.setFlight_AirlineName(flight_AirlineName);
-                    flight.setFlight_ScheduleDepartureTime(flight_ScheduleDepartureTime);
-                    flight.setFlight_ScheduleArrivalTime(flight_ScheduleArrivalTime);
-                    flight.setFlight_DepartureAirport(flight_DepartureAirportName);
-                    flight.setFlight_ArrivalAirport(flight_ArrivalAirportName);
-                    flightDao.favoriteFlight(flight, user_id); // Favorite
-                    message.what = 1;
-                    checkFavorite();
-                    handler.sendMessage(message);
-                }
-            }.start();
+            new Thread(() -> {
+                String flight_AirlineName = tracking_result_airlineName.getText().toString();
+                String flight_ScheduleDepartureTime = tracking_result_departure_planTime.getText().toString();
+                String flight_ScheduleArrivalTime = tracking_result_arrival_planTime.getText().toString();
+                String flight_DepartureAirportName = tracking_result_departure.getText().toString();
+                String flight_ArrivalAirportName = tracking_result_arrival.getText().toString();
+                //set data
+                Flight flight = new Flight();
+                flight.setFlight_No(flight_No);
+                flight.setFlight_Date(flight_Date);
+                flight.setFlight_AirlineName(flight_AirlineName);
+                flight.setFlight_ScheduleDepartureTime(flight_ScheduleDepartureTime);
+                flight.setFlight_ScheduleArrivalTime(flight_ScheduleArrivalTime);
+                flight.setFlight_DepartureAirport(flight_DepartureAirportName);
+                flight.setFlight_ArrivalAirport(flight_ArrivalAirportName);
+                flightDao.favoriteFlight(flight, user_id); // Favorite
+                message.what = 1;
+                checkFavorite();
+                handler.sendMessage(message);
+            }).start();
         }
     }
 
@@ -406,26 +404,22 @@ public class Flight_Tracking_Result extends AppCompatActivity {
      * Function: Check whether the flight is favorite
      */
     private void checkFavorite() {
-
         Intent intent = getIntent();
         String flight_No = tracking_result_flight_no.getText().toString();
         String flight_Date = intent.getStringExtra("flight_date");
 
-        new Thread() {
-            @Override
-            public void run() {
-                //检查航班是否已经被收藏
-                FlightDao flightDao = new FlightDao();
-                Message message = new Message();
-                boolean result = flightDao.checkFavoriteFlight(flight_No, flight_Date, user_id);
-                Log.d(TAG, "is Favorite?: " + result);
-                if (result) {
-                    message.what = 3;
-                } else {
-                    message.what = 4;
-                }
-                handler.sendEmptyMessage(message.what);
+        new Thread(() -> {
+            //检查航班是否已经被收藏
+            FlightDao flightDao = new FlightDao();
+            Message message = new Message();
+            boolean result = flightDao.checkFavoriteFlight(flight_No, flight_Date, user_id);
+            Log.d(TAG, "is Favorite?: " + result);
+            if (result) {
+                message.what = 3;
+            } else {
+                message.what = 4;
             }
-        }.start();
+            handler.sendEmptyMessage(message.what);
+        }).start();
     }
 }

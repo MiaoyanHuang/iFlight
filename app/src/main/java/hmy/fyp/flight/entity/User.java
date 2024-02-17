@@ -1,4 +1,5 @@
 package hmy.fyp.flight.entity;
+
 /**
  * Created by: Huang Miaoyan
  * Create Date: 2022-12-21
@@ -10,7 +11,8 @@ public class User {
     private String userPassword;
     private String userName;
 
-    public User() {}
+    public User() {
+    }
 
     public User(int id, String userAccount, String userPassword, String userName) {
         this.id = id;
@@ -20,9 +22,15 @@ public class User {
 
     }
 
-    public int getId() { return id;}
+    public int getId() {
+        return id;
+    }
 
-    public void setId(int id) { this.id = id; }
+// --Commented out by Inspection START (2/17/2024 10:27 PM):
+//    public void setId(int id) {
+//        this.id = id;
+//    }
+// --Commented out by Inspection STOP (2/17/2024 10:27 PM)
 
     public String getUserAccount() {
         return userAccount;

@@ -1,6 +1,9 @@
 package hmy.fyp.flight.bean.airfare.itineraries.buckets.items;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
+
 public class FarePolicy {
 
     @SerializedName("isChangeAllowed")
@@ -47,6 +50,7 @@ public class FarePolicy {
         this.isPartiallyRefundable = isPartiallyRefundable;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "FarePolicy{" +

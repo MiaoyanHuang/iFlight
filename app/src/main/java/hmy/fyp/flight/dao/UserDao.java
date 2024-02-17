@@ -10,8 +10,8 @@ import androidx.core.content.ContextCompat;
 
 import hmy.fyp.flight.R;
 import hmy.fyp.flight.entity.User;
-import hmy.fyp.flight.utils.ImageBase64Utils;
-import hmy.fyp.flight.utils.JDBCUtils;
+import hmy.fyp.flight.utils.ImageBase64Util;
+import hmy.fyp.flight.utils.JDBCUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,8 +26,8 @@ public class UserDao {
      * Function: Login
      */
     public boolean login(String userAccount, String userPassword) {
-        try (Connection connection = JDBCUtils.getConn()) {
-            String sql = "select * from user where userAccount = ? and userPassword = ?";
+        String sql = "select * from user where userAccount = ? and userPassword = ?";
+        try (Connection connection = JDBCUtil.getConn()) {
             if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement(sql);
                 if (ps != null) {
@@ -48,14 +48,14 @@ public class UserDao {
      * Function: Register
      */
     public boolean register(User user, Context context) {
-        try (Connection connection = JDBCUtils.getConn()) {
-            String sql = "insert into user(userAccount,userPassword,userName,photo) values (?,?,?,?)";
+        String sql = "insert into user(userAccount,userPassword,userName,photo) values (?,?,?,?)";
+        try (Connection connection = JDBCUtil.getConn()) {
             if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement(sql);
                 if (ps != null) {
                     Drawable drawable = ContextCompat.getDrawable(context, R.drawable.user_icon);
                     Bitmap bitmap = ((BitmapDrawable) Objects.requireNonNull(drawable)).getBitmap();
-                    String imageEncoded = ImageBase64Utils.imageToBase64(bitmap);
+                    String imageEncoded = ImageBase64Util.imageToBase64(bitmap);
                     ps.setString(1, user.getUserAccount());
                     ps.setString(2, user.getUserPassword());
                     ps.setString(3, user.getUserName());
@@ -75,7 +75,7 @@ public class UserDao {
      * Function: Query Exist User Account When User Register
      */
     public Boolean queryAccount(String userAccount) {
-        try (Connection connection = JDBCUtils.getConn()) {
+        try (Connection connection = JDBCUtil.getConn()) {
             String sql = "select * from user where userAccount = ?";
             if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement(sql);
@@ -97,7 +97,7 @@ public class UserDao {
      */
     public User getUserData(String userAccount) {
         User user_account = null;
-        try (Connection connection = JDBCUtils.getConn()) {
+        try (Connection connection = JDBCUtil.getConn()) {
             String sql = "select * from user where userAccount = ?";
             if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement(sql);
@@ -124,7 +124,7 @@ public class UserDao {
      * Function: Upload / Update User's Photo
      */
     public boolean uploadPhoto(String user_id, String imageEncoded) {
-        try (Connection connection = JDBCUtils.getConn()) {
+        try (Connection connection = JDBCUtil.getConn()) {
             String sql = "update user set photo = ? where id = ?";
             if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement(sql);
@@ -147,7 +147,7 @@ public class UserDao {
      */
     public String getPhoto(String user_id) {
         String imageEncoded = null;
-        try (Connection connection = JDBCUtils.getConn()) {
+        try (Connection connection = JDBCUtil.getConn()) {
             String sql = "select photo from user where id = ?";
             if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement(sql);

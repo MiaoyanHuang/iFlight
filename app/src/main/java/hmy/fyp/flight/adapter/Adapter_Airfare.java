@@ -7,15 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 
 import hmy.fyp.flight.R;
 import hmy.fyp.flight.bean.airfare.itineraries.buckets.Items;
+
 import java.util.List;
 
-public class Adapter_Airfare extends RecyclerView.Adapter<Adapter_Airfare.AirfareViewHolder>{
+public class Adapter_Airfare extends RecyclerView.Adapter<Adapter_Airfare.AirfareViewHolder> {
     private final Context mContext;
     private final List<Items> mItems;
     private OnItemClickListener mListener;
@@ -23,9 +26,11 @@ public class Adapter_Airfare extends RecyclerView.Adapter<Adapter_Airfare.Airfar
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
+
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
+
     public Adapter_Airfare(Context mContext, List<Items> mItems) {
         this.mContext = mContext;
         this.mItems = mItems;
@@ -35,8 +40,7 @@ public class Adapter_Airfare extends RecyclerView.Adapter<Adapter_Airfare.Airfar
     @Override
     public AirfareViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.recycler_view_airfare_list, parent, false);
-        AirfareViewHolder airfareViewHolder = new AirfareViewHolder(view);
-        return airfareViewHolder;
+        return new AirfareViewHolder(view);
     }
 
     /**
@@ -48,7 +52,6 @@ public class Adapter_Airfare extends RecyclerView.Adapter<Adapter_Airfare.Airfar
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull AirfareViewHolder holder, int position) {
-
         Items items = mItems.get(position);
         holder.airfareList_departureTime.setText(items.getLegs().get(0).getDeparture().substring(11, 16));
         holder.airfareList_departureIATA.setText(items.getLegs().get(0).getOrigin().getId());
@@ -57,8 +60,8 @@ public class Adapter_Airfare extends RecyclerView.Adapter<Adapter_Airfare.Airfar
         holder.airfareList_duration.setText(transformDuration(String.valueOf(duration)));
 
         int stopCount = items.getLegs().get(0).getStopCount();
-        if (stopCount!=0) {
-            holder.airfareList_stops.setText(stopCount +" Stop");
+        if (stopCount != 0) {
+            holder.airfareList_stops.setText(stopCount + " Stop");
         }
 
         holder.airfareList_arrivalTime.setText(items.getLegs().get(0).getArrival().substring(11, 16));
@@ -71,7 +74,7 @@ public class Adapter_Airfare extends RecyclerView.Adapter<Adapter_Airfare.Airfar
 
         String marketingCarrier = items.getLegs().get(0).getCarriers().getMarketing().get(0).getName();
 
-        if (items.getLegs().get(0).getCarriers().getOperating()!= null) {
+        if (items.getLegs().get(0).getCarriers().getOperating() != null) {
             String operatingCarrier = items.getLegs().get(0).getCarriers().getOperating().get(0).getName();
             if (!marketingCarrier.equals(operatingCarrier)) {
                 String operatedBy = " Operated By " + operatingCarrier;
@@ -97,19 +100,15 @@ public class Adapter_Airfare extends RecyclerView.Adapter<Adapter_Airfare.Airfar
 
     @Override
     public int getItemCount() {
-        if (mItems == null){
-            return 0;
-        }
-        return mItems.size();
+        return mItems == null ? 0 : mItems.size();
     }
 
     public static class AirfareViewHolder extends RecyclerView.ViewHolder {
-
-        TextView airfareList_departureTime, airfareList_departureIATA;
-        TextView airfareList_duration, airfareList_stops, airfareList_price_delayDay;
-        TextView airfareList_arrivalTime, airfareList_arrivalIATA;
-        TextView airfareList_airlineName, airfareList_price;
-        ImageView airfareList_airlinesLogo;
+        private final TextView airfareList_departureTime, airfareList_departureIATA;
+        private final TextView airfareList_duration, airfareList_stops, airfareList_price_delayDay;
+        private final TextView airfareList_arrivalTime, airfareList_arrivalIATA;
+        private final TextView airfareList_airlineName, airfareList_price;
+        private final ImageView airfareList_airlinesLogo;
 
         public AirfareViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -127,7 +126,7 @@ public class Adapter_Airfare extends RecyclerView.Adapter<Adapter_Airfare.Airfar
     }
 
     /**
-     * Funtion: Transform Duration from Minutes to Hours and Minutes
+     * Function: Transform Duration from Minutes to Hours and Minutes
      */
     private String transformDuration(String duration) {
         int durationInMinutes = Integer.parseInt(duration);

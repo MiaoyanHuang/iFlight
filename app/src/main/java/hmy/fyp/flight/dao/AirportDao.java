@@ -2,14 +2,14 @@ package hmy.fyp.flight.dao;
 
 import android.util.Log;
 
-import hmy.fyp.flight.entity.Airport;
-import hmy.fyp.flight.utils.JDBCUtils;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import hmy.fyp.flight.entity.Airport;
+import hmy.fyp.flight.utils.JDBCUtil;
 
 public class AirportDao {
 
@@ -20,8 +20,8 @@ public class AirportDao {
      */
     public List<Airport> getAirport() {
         List<Airport> airportList = new ArrayList<>();
-        try (Connection connection = JDBCUtils.getConn()) {
-            String sql = "select * from airport order by Country, Airport_Name";
+        String sql = "select * from airport order by Country, Airport_Name";
+        try (Connection connection = JDBCUtil.getConn()) {
             if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement(sql);
                 if (ps != null) {
@@ -47,8 +47,8 @@ public class AirportDao {
      */
     public List<Airport> searchAirport(String searchInput) {
         List<Airport> airportList = new ArrayList<>();
-        try (Connection connection = JDBCUtils.getConn()) {
-            String sql = "select * from airport where Airport_Name LIKE ? or IATA_Code LIKE ? or Country LIKE ?";
+        String sql = "select * from airport where Airport_Name LIKE ? or IATA_Code LIKE ? or Country LIKE ?";
+        try (Connection connection = JDBCUtil.getConn()) {
             if (connection != null) {
                 PreparedStatement ps = connection.prepareStatement(sql);
                 if (ps != null) {
@@ -68,7 +68,6 @@ public class AirportDao {
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "Exception Message of Search Airport: " + e.getMessage());
-            return null;
         }
         return airportList;
     }

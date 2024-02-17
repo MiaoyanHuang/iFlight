@@ -1,5 +1,7 @@
 package hmy.fyp.flight.bean.airfare.itineraries.buckets.items;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Price {
@@ -26,6 +28,7 @@ public class Price {
         this.formatted = formatted;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Price{" +

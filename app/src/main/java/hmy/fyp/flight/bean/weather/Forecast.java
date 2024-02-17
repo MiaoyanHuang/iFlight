@@ -1,5 +1,7 @@
 package hmy.fyp.flight.bean.weather;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Forecast {
@@ -69,6 +71,7 @@ public class Forecast {
         this.code = code;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Forecast{" +

@@ -1,10 +1,13 @@
 package hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs;
 
+import androidx.annotation.NonNull;
+
+import com.google.gson.annotations.SerializedName;
+
 import hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs.segments.MarketingCarrier;
 import hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs.segments.OperatingCarrier;
 import hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs.segments.SegmentsDestination;
 import hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs.segments.SegmentsOrigin;
-import com.google.gson.annotations.SerializedName;
 
 public class Segments {
 
@@ -107,6 +110,7 @@ public class Segments {
         this.operatingCarrier = operatingCarrier;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Segments{" +

@@ -1,6 +1,7 @@
 package hmy.fyp.flight.navigation.favorite;
 
 import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,16 +13,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
+import java.util.Objects;
+
+import hmy.fyp.flight.Flight_Tracking;
 import hmy.fyp.flight.adapter.Adapter_FavoriteList;
 import hmy.fyp.flight.dao.FlightDao;
 import hmy.fyp.flight.databinding.FragmentFavoriteBinding;
 import hmy.fyp.flight.entity.Flight;
-import hmy.fyp.flight.Flight_Tracking;
-import java.util.List;
 
 /**
  * Created by: Huang Miaoyan
@@ -52,9 +57,9 @@ public class FavoriteFragment extends Fragment {
     /**
      * Function: Handler for Favorite Fragment
      */
-    private final Handler handler = new Handler(Looper.myLooper()){
+    private final Handler handler = new Handler(Objects.requireNonNull(Looper.myLooper())) {
         @Override
-        public void handleMessage(Message msg) {
+        public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             if (msg.what == 1) { // Empty Favorite List
                 favorite_list.setVisibility(View.GONE);
@@ -87,8 +92,8 @@ public class FavoriteFragment extends Fragment {
 
             //传递参数
             Intent intent = new Intent(getActivity(), Flight_Tracking.class);
-            intent.putExtra("Favorite_SearchFavoriteFlight","Yes");
-            intent.putExtra("Favorite_FlightNumber",FlightNumber);
+            intent.putExtra("Favorite_SearchFavoriteFlight", true);
+            intent.putExtra("Favorite_FlightNumber", FlightNumber);
             intent.putExtra("Favorite_Date", Date);
             startActivity(intent);
         });
@@ -97,24 +102,21 @@ public class FavoriteFragment extends Fragment {
     /**
      * Function: Search Favorite Flight From MySQL Database
      */
-    private void searchFavorite(){
-        new Thread(){
-            @Override
-            public void run() {
-                FlightDao flightDao = new FlightDao();
-                Message message = new Message();
-                SharedPreferences preferences = requireActivity().getSharedPreferences("user", MODE_PRIVATE);
-                int user_id = Integer.parseInt(preferences.getString("user_id",""));
-                List<Flight> flights = flightDao.searchFavoriteFlight(user_id);
-                if(flights.size() == 0){ // if size == 0, which mean no favorite flight in MySQL
-                    message.what = 1;
-                } else {  // if size != 0, which mean there are favorite flight information in MySQL
-                    message.what = 2;
-                    message.obj = flights;
-                }
-                handler.sendMessage(message);
+    private void searchFavorite() {
+        new Thread(() -> {
+            FlightDao flightDao = new FlightDao();
+            Message message = new Message();
+            SharedPreferences preferences = requireActivity().getSharedPreferences("user", MODE_PRIVATE);
+            int user_id = Integer.parseInt(preferences.getString("user_id", ""));
+            List<Flight> flights = flightDao.searchFavoriteFlight(user_id);
+            if (flights.size() == 0) { // if size == 0, which mean no favorite flight in MySQL
+                message.what = 1;
+            } else {  // if size != 0, which mean there are favorite flight information in MySQL
+                message.what = 2;
+                message.obj = flights;
             }
-        }.start();
+            handler.sendMessage(message);
+        }).start();
     }
 
     @Override

@@ -13,19 +13,24 @@ import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 
 import hmy.fyp.flight.api.API_Flight;
 import hmy.fyp.flight.api.API_Weather;
 import hmy.fyp.flight.bean.flight.Flight_Bean;
 import hmy.fyp.flight.bean.flight.Flight_Bean_Error;
 import hmy.fyp.flight.entity.Flight;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
 
 public class Flight_Tracking extends AppCompatActivity {
     private static final String TAG = "flight_tracking";
@@ -33,7 +38,7 @@ public class Flight_Tracking extends AppCompatActivity {
     private Button back_button, search_button;
     private ProgressDialog progressDialog;
     private String flight_Info, departureWeather_Info, arrivalWeather_Info, departureCity, arrivalCity;
-    Flight flight = new Flight();
+    private final Flight flight = new Flight();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,27 +56,27 @@ public class Flight_Tracking extends AppCompatActivity {
     /**
      * Function: Handle for flight tracking
      */
-    private final Handler handler_tracking = new Handler(Looper.myLooper()){
+    private final Handler handler_tracking = new Handler(Objects.requireNonNull(Looper.myLooper())) {
         @Override
-        public void handleMessage(Message msg) {
+        public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-            if(msg.what == 0) {
-                progressDialogBox(0);
+            if (msg.what == 0) {
+                progressDialogBox(false);
                 Toast.makeText(getApplicationContext(), "Connection error or time out.", Toast.LENGTH_SHORT).show();
-            } else if(msg.what == 1){
-                progressDialogBox(0);
+            } else if (msg.what == 1) {
+                progressDialogBox(false);
                 String err = (String) msg.obj;
                 String errorMessage = getErrorMessage(err);
                 Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_SHORT).show();
             } else if (msg.what == 2) {
                 String result = (String) msg.obj;
                 Gson(result);
-            } else if (msg.what ==3){
+            } else if (msg.what == 3) {
                 searchDepartureWeatherInfo();
-            } else if (msg.what ==4){
+            } else if (msg.what == 4) {
                 searchArrivalWeatherInfo();
             } else if (msg.what == 5) {
-                progressDialogBox(0);
+                progressDialogBox(false);
                 redirectToResult();
             }
         }
@@ -87,11 +92,13 @@ public class Flight_Tracking extends AppCompatActivity {
 
         //当用户在FavoriteFragment中点击favoriteList中的item时，parameter会传递到这里
         Intent intent = getIntent();
-        String SearchFavoriteFlight = intent.getStringExtra("Favorite_SearchFavoriteFlight");
-        if(SearchFavoriteFlight != null && SearchFavoriteFlight.equals("Yes")){
+        boolean isSearchFavoriteFlight = intent.getBooleanExtra("Favorite_SearchFavoriteFlight", false);
+        if (isSearchFavoriteFlight) {
             String FlightNumber = intent.getStringExtra("Favorite_FlightNumber");
             String Date = intent.getStringExtra("Favorite_Date");
-            searchFlightInfo(FlightNumber, Date);
+            if (FlightNumber != null && Date != null) {
+                searchFlightInfo(FlightNumber, Date);
+            }
         }
 
         //Date Picker Listener
@@ -126,33 +133,30 @@ public class Flight_Tracking extends AppCompatActivity {
             Toast.makeText(this, "Please input flight number", Toast.LENGTH_SHORT).show();
         } else if (Date.equals("")) { // if date is empty
             Toast.makeText(this, "Please pick the date", Toast.LENGTH_SHORT).show();
-        } else if (!FlightNumber.matches("[a-zA-Z0-9]+")){ // if flight number is not number or letter
+        } else if (!FlightNumber.matches("[a-zA-Z0-9]+")) { // if flight number is not number or letter
             Toast.makeText(this, "Please input flight number in the right format", Toast.LENGTH_SHORT).show();
         } else if (!Date.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}")) { //if the date format is not yyyy-mm-dd
             Toast.makeText(this, "Please input Date in the right format", Toast.LENGTH_SHORT).show();
-        } else{
-            progressDialogBox(1);
-            new Thread(){
-                @Override
-                public void run() {
-                    Message msg = new Message();
-                    API_Flight ft = new API_Flight();
-                    String result = ft.getFlightInfo(FlightNumber, Date);
-                    //String result = testNewAPIJsonData(); // for test
-                    Log.d(TAG, "FlightInfo_Json: " + result);
-                    if (result == null || result.equals("Connection error or time out")) {
-                        msg.what = 0; // handle connection error
-                    } else if(result.contains("error")) {
-                        msg.obj = result;
-                        msg.what = 1; // handle error message
-                    } else {
-                        flight.setFlight_Date(Date);
-                        msg.obj = result;
-                        msg.what = 2; // handle flight information
-                    }
-                    handler_tracking.sendMessage(msg);
+        } else {
+            progressDialogBox(true);
+            new Thread(() -> {
+                Message msg = new Message();
+                API_Flight ft = new API_Flight();
+                String result = ft.getFlightInfo(FlightNumber, Date);
+                //String result = testNewAPIJsonData(); // for test
+                Log.d(TAG, "FlightInfo_Json: " + result);
+                if (result == null || result.equals("Connection error or time out")) {
+                    msg.what = 0; // handle connection error
+                } else if (result.contains("error")) {
+                    msg.obj = result;
+                    msg.what = 1; // handle error message
+                } else {
+                    flight.setFlight_Date(Date);
+                    msg.obj = result;
+                    msg.what = 2; // handle flight information
                 }
-            }.start();
+                handler_tracking.sendMessage(msg);
+            }).start();
         }
     }
 
@@ -163,7 +167,8 @@ public class Flight_Tracking extends AppCompatActivity {
      */
     private void Gson(String result) {
         Gson gson = new Gson();
-        List<Flight_Bean> flightData = gson.fromJson(result, new TypeToken<List<Flight_Bean>>(){}.getType());
+        List<Flight_Bean> flightData = gson.fromJson(result, new TypeToken<List<Flight_Bean>>() {
+        }.getType());
         departureCity = flightData.get(0).getFlightDep();
         arrivalCity = flightData.get(0).getFlightArr();
         flight_Info = gson.toJson(flightData.get(0));
@@ -183,33 +188,27 @@ public class Flight_Tracking extends AppCompatActivity {
      * Function: Search Departure and Arrival Weather Information
      */
     private void searchDepartureWeatherInfo() {
-        new Thread() {
-            @Override
-            public void run() {
-                API_Weather API_Weather_Dep = new API_Weather();
-                departureWeather_Info = API_Weather_Dep.getWeatherInfo(departureCity);
-                Log.d(TAG, "departureWeather_Info: " + departureWeather_Info);
-                handler_tracking.sendEmptyMessage(4);
-            }
-        }.start();
+        new Thread(() -> {
+            API_Weather API_Weather_Dep = new API_Weather();
+            departureWeather_Info = API_Weather_Dep.getWeatherInfo(departureCity);
+            Log.d(TAG, "departureWeather_Info: " + departureWeather_Info);
+            handler_tracking.sendEmptyMessage(4);
+        }).start();
     }
 
     private void searchArrivalWeatherInfo() {
-        new Thread() {
-            @Override
-            public void run() {
-                API_Weather API_Weather_Arr = new API_Weather();
-                arrivalWeather_Info = API_Weather_Arr.getWeatherInfo(arrivalCity);
-                Log.d(TAG, "arrivalWeather_Info: " + arrivalWeather_Info);
-                handler_tracking.sendEmptyMessage(5);
-            }
-        }.start();
+        new Thread(() -> {
+            API_Weather API_Weather_Arr = new API_Weather();
+            arrivalWeather_Info = API_Weather_Arr.getWeatherInfo(arrivalCity);
+            Log.d(TAG, "arrivalWeather_Info: " + arrivalWeather_Info);
+            handler_tracking.sendEmptyMessage(5);
+        }).start();
     }
 
     /**
      * Function: Redirect to Flight Tracking Result Interface
      */
-    private void redirectToResult(){
+    private void redirectToResult() {
         Intent intent = new Intent(this, Flight_Tracking_Result.class);
         String pickDate = flight.getFlight_Date();
         intent.putExtra("flight_info", flight_Info);
@@ -222,18 +221,18 @@ public class Flight_Tracking extends AppCompatActivity {
     /**
      * Function: Show Progress Dialog
      */
-    private void progressDialogBox(int msg) {
-        if (msg == 1){  // 1 = show progress dialog
+    private void progressDialogBox(boolean isEnable) {
+        if (isEnable) {  // true = show progress dialog
             progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Searching Flight Information");
             progressDialog.setMessage("Please Wait...");
             progressDialog.setCancelable(false);
             progressDialog.show();
-        } else if(msg == 0){ // 0 = dismiss progress dialog
+        } else { // false = dismiss progress dialog
             progressDialog.dismiss();
         }
     }
-    private String testNewAPIJsonData_error(){
+/*    private String testNewAPIJsonData_error(){
         return "{\"error_code\":2,\"error\":\"This is an error message for debug\"}";
     }
     private String testNewAPIJsonData(){
@@ -284,5 +283,5 @@ public class Flight_Tracking extends AppCompatActivity {
                "        \"VeryZhunReadyArrtimeDate\":\"2023-03-23 20:35:00\"\n" +
                "    }\n" +
                "]";
-    }
+    }*/
 }

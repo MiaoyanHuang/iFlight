@@ -1,5 +1,7 @@
 package hmy.fyp.flight.bean.flight;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Flight_Bean_Error {
@@ -24,6 +26,7 @@ public class Flight_Bean_Error {
         this.error = error;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Flight_Bean_Error{" +

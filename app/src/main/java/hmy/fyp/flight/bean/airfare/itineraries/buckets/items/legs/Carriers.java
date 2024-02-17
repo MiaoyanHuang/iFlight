@@ -1,11 +1,14 @@
 package hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs;
 
 
-import hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs.carriers.Marketing;
-import hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs.carriers.Operating;
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
+
+import hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs.carriers.Marketing;
+import hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs.carriers.Operating;
 
 public class Carriers {
 
@@ -42,6 +45,7 @@ public class Carriers {
         this.operationType = operationType;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Carriers{" +

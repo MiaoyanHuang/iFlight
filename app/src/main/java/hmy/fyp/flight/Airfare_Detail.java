@@ -1,6 +1,5 @@
 package hmy.fyp.flight;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,20 +8,24 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.bumptech.glide.Glide;
 
-import hmy.fyp.flight.bean.airfare.itineraries.buckets.Items;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import hmy.fyp.flight.bean.airfare.itineraries.buckets.Items;
+
 public class Airfare_Detail extends AppCompatActivity {
 
-    private final String TAG = "airfare_detail";
-    private TextView airfare_detail_departure_airport, airfare_detail_departure_date,airfare_detail_departure_weekday;
+    // --Commented out by Inspection (2/17/2024 10:27 PM):private final String TAG = "airfare_detail";
+    private TextView airfare_detail_departure_airport, airfare_detail_departure_date, airfare_detail_departure_weekday;
     private TextView airfare_detail_arrival_airport, airfare_detail_departure_time1, airfare_detail_departure_city1, airfare_detail_arrival_time1, airfare_detail_arrival_city1;
     private TextView airfare_detail_wait_time;
     private TextView airfare_detail_DelayInDay1, airfare_detail_DelayInDay2, airfare_detail_DelayInDay3;
@@ -33,6 +36,7 @@ public class Airfare_Detail extends AppCompatActivity {
     private Button airfare_detail_purchase_button;
     private ImageView airfare_detail_logo, airfare_detail_transfer_logo, airfare_detail_transfer_icon;
     private LinearLayout airfare_detail_transfer_flightInfo_block, airfare_detail_transfer_schedule_block;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +101,7 @@ public class Airfare_Detail extends AppCompatActivity {
         Items items = gson_airfare.fromJson(itemInfo, Items.class);
 
         // Flight Info Block
-        String FlightIATA =  items.getLegs().get(0).getSegments().get(0).getMarketingCarrier().getAlternateId();
+        String FlightIATA = items.getLegs().get(0).getSegments().get(0).getMarketingCarrier().getAlternateId();
         String FlightNumber = items.getLegs().get(0).getSegments().get(0).getFlightNumber();
         String FlightNo = FlightIATA + FlightNumber;
         String LogoUrl = items.getLegs().get(0).getCarriers().getMarketing().get(0).getLogoUrl();
@@ -105,17 +109,17 @@ public class Airfare_Detail extends AppCompatActivity {
 
         // Schedule Block
         String DepartureDate = items.getLegs().get(0).getDeparture();
-        String DepartureTime1 = items.getLegs().get(0).getSegments().get(0).getDeparture().substring(11,16);
+        String DepartureTime1 = items.getLegs().get(0).getSegments().get(0).getDeparture().substring(11, 16);
         String DepartureCity1 = items.getLegs().get(0).getSegments().get(0).getOrigin().getOriginParent().getName();
         String ArrivalDate1 = items.getLegs().get(0).getSegments().get(0).getArrival();
-        String ArrivalTime1 = ArrivalDate1.substring(11,16);
+        String ArrivalTime1 = ArrivalDate1.substring(11, 16);
         String ArrivalCity1 = items.getLegs().get(0).getSegments().get(0).getDestination().getDestinationParent().getName();
 
         // Total Duration Block
         int TotalDuration = items.getLegs().get(0).getDurationInMinutes();
 
         // Price, Fare Policy and Purchase Button Block
-        String Price =  items.getPrice().getFormatted();
+        String Price = items.getPrice().getFormatted();
         String ChangeAllowed = items.getFarePolicy().getIsChangeAllowed();
         String CancellationAllowed = items.getFarePolicy().getIsCancellationAllowed();
         String DeepLink = items.getDeeplink();
@@ -140,20 +144,20 @@ public class Airfare_Detail extends AppCompatActivity {
         airfare_detail_totalDuration.setText(transformDuration(String.valueOf(TotalDuration)));
 
         // For Transfer Flight
-        if(items.getLegs().get(0).getSegments().size()>1 && items.getLegs().get(0).getStopCount() !=0) {
+        if (items.getLegs().get(0).getSegments().size() > 1 && items.getLegs().get(0).getStopCount() != 0) {
             airfare_detail_transfer_icon.setVisibility(View.VISIBLE);
             airfare_detail_transfer_flightInfo_block.setVisibility(View.VISIBLE);
             airfare_detail_transfer_schedule_block.setVisibility(View.VISIBLE);
 
             // Transfer Flight Info
-            String FlightIATA_Transfer =  items.getLegs().get(0).getSegments().get(1).getMarketingCarrier().getAlternateId();
+            String FlightIATA_Transfer = items.getLegs().get(0).getSegments().get(1).getMarketingCarrier().getAlternateId();
             String FlightNumber_Transfer = items.getLegs().get(0).getSegments().get(1).getFlightNumber();
             String FlightNo_Transfer = FlightIATA_Transfer + FlightNumber_Transfer;
             String LogoUrl_Transfer = items.getLegs().get(0).getCarriers().getMarketing().get(0).getLogoUrl();
             String Airlines_Transfer = items.getLegs().get(0).getCarriers().getMarketing().get(0).getName();
 
             // If 2nd flight is operated by different airlines, get the logo and name of 2nd flight
-            if (items.getLegs().get(0).getCarriers().getMarketing().size()!=1) {
+            if (items.getLegs().get(0).getCarriers().getMarketing().size() != 1) {
                 LogoUrl_Transfer = items.getLegs().get(0).getCarriers().getMarketing().get(1).getLogoUrl();
                 Airlines_Transfer = items.getLegs().get(0).getCarriers().getMarketing().get(1).getName();
             }
@@ -219,6 +223,7 @@ public class Airfare_Detail extends AppCompatActivity {
             throw new RuntimeException(e);
         }
         SimpleDateFormat newDateFormat = new SimpleDateFormat("MMM. dd, yyyy", Locale.US);
+        assert date != null;
         return newDateFormat.format(date);
     }
 
@@ -234,20 +239,21 @@ public class Airfare_Detail extends AppCompatActivity {
             throw new RuntimeException(e);
         }
         SimpleDateFormat newDateFormat = new SimpleDateFormat("EEEE", Locale.US);
+        assert date != null;
         return newDateFormat.format(date);
     }
 
     /**
      * Function: Compare Departure Date and Arrival Date
      */
-    public String compareDate(String departureDate,String arrivalDate){
+    public String compareDate(String departureDate, String arrivalDate) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         Date d1;
         Date d2;
         try {
             d1 = df.parse(departureDate);
             d2 = df.parse(arrivalDate);
-            if(d1!=null && d2!=null) {
+            if (d1 != null && d2 != null) {
                 long diff = d2.getTime() - d1.getTime();
                 if (diff == 0) {
                     return "";

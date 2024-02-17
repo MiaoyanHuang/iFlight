@@ -3,13 +3,14 @@ package hmy.fyp.flight.utils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+
 import java.io.ByteArrayOutputStream;
 
 /**
  * Reference Function: Convert Image to Base64 Encode
  * Reference From: Forget....
  */
-public class ImageBase64Utils {
+public class ImageBase64Util {
 
     /**
      * Function: Bitmap to Base64
@@ -18,8 +19,7 @@ public class ImageBase64Utils {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream.toByteArray();
-        String baseStr = Base64.encodeToString(byteArray, Base64.DEFAULT);
-        return baseStr;
+        return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
 
     /**
@@ -27,7 +27,6 @@ public class ImageBase64Utils {
      */
     public static Bitmap base64ToImage(String base64Str) {
         byte[] byteArray = Base64.decode(base64Str, Base64.DEFAULT);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-        return bitmap;
+        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
     }
 }

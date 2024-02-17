@@ -1,5 +1,7 @@
 package hmy.fyp.flight.bean.weather;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Atmosphere {
@@ -34,6 +36,7 @@ public class Atmosphere {
         this.pressure = pressure;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Atmosphere{" +

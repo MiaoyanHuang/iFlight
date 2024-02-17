@@ -1,9 +1,12 @@
 package hmy.fyp.flight.bean.airfare.itineraries;
 
-import hmy.fyp.flight.bean.airfare.itineraries.buckets.Items;
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
+
+import hmy.fyp.flight.bean.airfare.itineraries.buckets.Items;
 
 public class Buckets {
 
@@ -40,6 +43,7 @@ public class Buckets {
         this.items = items;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Buckets{" +

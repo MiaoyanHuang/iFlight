@@ -1,5 +1,7 @@
 package hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Destination {
@@ -59,6 +61,7 @@ public class Destination {
         this.isHighlighted = isHighlighted;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Destination{" +

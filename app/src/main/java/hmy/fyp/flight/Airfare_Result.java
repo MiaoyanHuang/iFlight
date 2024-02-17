@@ -1,8 +1,6 @@
 package hmy.fyp.flight;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,14 +9,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import hmy.fyp.flight.adapter.Adapter_Airfare;
 import hmy.fyp.flight.bean.airfare.Airfare_Bean;
 import hmy.fyp.flight.bean.airfare.itineraries.Buckets;
 import hmy.fyp.flight.bean.airfare.itineraries.buckets.Items;
-import com.google.gson.Gson;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Airfare_Result extends AppCompatActivity {
     private final String TAG = "airfare_result";
@@ -51,8 +55,7 @@ public class Airfare_Result extends AppCompatActivity {
     /**
      * Function: Initialize View
      */
-    private void initView() {  //后续考虑开发按钮被按下的反馈
-
+    private void initView() {  // 后续考虑开发按钮被按下的反馈
         Gson_Airfare();
 
         //Back Button Listener
@@ -62,15 +65,15 @@ public class Airfare_Result extends AppCompatActivity {
         airfare_result_best.setOnClickListener(v -> displayAirfare(airfare_result_best, "All"));
 
         //Cheap Button Listener
-        airfare_result_cheap.setOnClickListener(v -> displayAirfare(airfare_result_cheap,"Cheap"));
+        airfare_result_cheap.setOnClickListener(v -> displayAirfare(airfare_result_cheap, "Cheap"));
 
         //Fast Button Listener
-        airfare_result_fast.setOnClickListener(v -> displayAirfare(airfare_result_fast,"Fast"));
+        airfare_result_fast.setOnClickListener(v -> displayAirfare(airfare_result_fast, "Fast"));
 
         //Direct Button Listener
-        airfare_result_direct.setOnClickListener(v -> displayAirfare(airfare_result_direct,"Direct"));
+        airfare_result_direct.setOnClickListener(v -> displayAirfare(airfare_result_direct, "Direct"));
 
-        displayAirfare( airfare_result_best, "All"); // Display default Information when redirect to result
+        displayAirfare(airfare_result_best, "All"); // Display default Information when redirect to result
     }
 
     /**
@@ -78,7 +81,7 @@ public class Airfare_Result extends AppCompatActivity {
      * Reference Function: Gson
      * Reference From: <a href="https://www.youtube.com/watch?v=f-kcvxYZrB4">...</a>
      */
-    private void Gson_Airfare(){
+    private void Gson_Airfare() {
         // Get the airfare_Info from the intent
         Intent intent = getIntent();
         String airfare_Info = intent.getStringExtra("airfare_info");
@@ -107,14 +110,14 @@ public class Airfare_Result extends AppCompatActivity {
                 }
             }
         }
-        displayJourneyDetails(dep_AirportName,arr_AirportName,date);
+        displayJourneyDetails(dep_AirportName, arr_AirportName, date);
     }
 
     /**
      * Function: Display Flight Details
      */
+    @SuppressLint("SetTextI18n")
     private void displayJourneyDetails(String dep_AirportName, String arr_AirportName, String date) { //Display flight details
-
         //Display Airport Name
         airfare_result_depAirport.setText(dep_AirportName);
         airfare_result_arrAirport.setText(arr_AirportName);
@@ -124,7 +127,7 @@ public class Airfare_Result extends AppCompatActivity {
 
         //Display total result
         int ResultCount = allFlight.size();
-        airfare_result_totalResult.setText("Total Tickets: "+ ResultCount);
+        airfare_result_totalResult.setText("Total Tickets: " + ResultCount);
     }
 
     /**
@@ -134,12 +137,11 @@ public class Airfare_Result extends AppCompatActivity {
         setButtonProperty(buttonName);
         airfare_result_noDataIcon.setVisibility(View.INVISIBLE);
         List<Items> sortedItems = new ArrayList<>(allFlight);
-        switch (sortBy)
-        {
+        switch (sortBy) {
             case "All":
                 break;
             case "Cheap":
-                Log.d(TAG, "2" );
+                Log.d(TAG, "2");
                 for (int i = 0; i < sortedItems.size(); i++) {
                     for (int j = i + 1; j < sortedItems.size(); j++) {
                         if (sortedItems.get(i).getPrice().getRaw() > sortedItems.get(j).getPrice().getRaw()) {
@@ -163,14 +165,14 @@ public class Airfare_Result extends AppCompatActivity {
                 break;
             case "Direct":
                 for (int i = 0; i < sortedItems.size(); i++) {
-                    if (sortedItems.get(i).getLegs().get(0).getStopCount() !=0) {
+                    if (sortedItems.get(i).getLegs().get(0).getStopCount() != 0) {
                         sortedItems.remove(i);
                         i--; //if remove an item, the index should be minus 1
                     }
                 }
                 break;
         }
-        if(sortedItems.size() == 0){
+        if (sortedItems.size() == 0) {
             airfare_result_airfare_list.setAdapter(null);
             airfare_result_noDataIcon.setVisibility(View.VISIBLE);
         } else {
@@ -186,8 +188,7 @@ public class Airfare_Result extends AppCompatActivity {
     /**
      * Function: Redirect to Airfare Detail
      */
-    private void redirectToDetail(Items item){
-
+    private void redirectToDetail(Items item) {
         Gson gson = new Gson();
         String itemInfo = gson.toJson(item);
 
@@ -207,7 +208,7 @@ public class Airfare_Result extends AppCompatActivity {
      * Function: Set Button Property
      * Note: 设置按钮颜色 按钮字体颜色 按钮是否可点击       后续考虑是否增加按钮被按下的动态效果
      */
-    private void setButtonProperty(Button buttonName){
+    private void setButtonProperty(Button buttonName) {
         List<Button> ButtonList = new ArrayList<>(Arrays.asList(airfare_result_best, airfare_result_cheap, airfare_result_fast, airfare_result_direct));
         ButtonList.remove(buttonName);
         for (Button view : ButtonList) {

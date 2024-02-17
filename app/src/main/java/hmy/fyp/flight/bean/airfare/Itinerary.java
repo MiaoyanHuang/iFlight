@@ -1,9 +1,12 @@
 package hmy.fyp.flight.bean.airfare;
 
-import hmy.fyp.flight.bean.airfare.itineraries.Buckets;
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
+
+import hmy.fyp.flight.bean.airfare.itineraries.Buckets;
 
 public class Itinerary {
 
@@ -18,6 +21,7 @@ public class Itinerary {
         this.buckets = buckets;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Itinerary{" +

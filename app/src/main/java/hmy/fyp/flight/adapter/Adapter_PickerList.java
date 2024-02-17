@@ -7,9 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.List;
+
 import hmy.fyp.flight.R;
 import hmy.fyp.flight.entity.Airport;
-import java.util.List;
 
 public class Adapter_PickerList extends BaseAdapter {
 
@@ -23,10 +24,7 @@ public class Adapter_PickerList extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if (dataList == null){
-            return 0;
-        }
-        return dataList.size();
+        return dataList == null ? 0 : dataList.size();
     }
 
     @Override

@@ -5,8 +5,8 @@ import android.util.Log;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class JDBCUtils {
-    private static final String TAG = "JDBCUtils";
+public class JDBCUtil {
+    private static final String TAG = "JDBCUtil";
     private static final String driver = "com.mysql.jdbc.Driver"; // MySql Driver
     private static final String ip = "10.0.2.2:3306/"; // VM ip
     private static final String dbName = "flight"; // Database Name

@@ -1,5 +1,7 @@
 package hmy.fyp.flight.bean.airfare;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Context {
@@ -37,6 +39,7 @@ public class Context {
         this.totalResults = totalResults;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Context{" +

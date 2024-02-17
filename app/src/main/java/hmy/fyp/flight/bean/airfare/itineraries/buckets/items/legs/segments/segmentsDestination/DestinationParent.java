@@ -1,5 +1,7 @@
 package hmy.fyp.flight.bean.airfare.itineraries.buckets.items.legs.segments.segmentsDestination;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class DestinationParent {
@@ -36,6 +38,7 @@ public class DestinationParent {
         this.type = type;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "DestinationParent{" +

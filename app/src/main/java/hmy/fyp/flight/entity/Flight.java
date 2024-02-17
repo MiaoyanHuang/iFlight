@@ -1,5 +1,7 @@
 package hmy.fyp.flight.entity;
 
+import androidx.annotation.NonNull;
+
 /**
  * Created by: Huang Miaoyan
  * Create Date: 2022-12-25
@@ -15,17 +17,20 @@ public class Flight {
     private String flight_DepartureAirport;
     private String flight_ArrivalAirport;
 
-    public Flight() {}
-
-    public Flight(String flight_No, String flight_AirlineName, String flight_Date, String flight_ScheduleDepartureTime, String flight_ScheduleArrivalTime, String flight_DepartureAirport, String flight_ArrivalAirport) {
-        this.flight_No = flight_No;
-        this.flight_AirlineName = flight_AirlineName;
-        this.flight_Date = flight_Date;
-        this.flight_ScheduleDepartureTime = flight_ScheduleDepartureTime;
-        this.flight_ScheduleArrivalTime = flight_ScheduleArrivalTime;
-        this.flight_DepartureAirport = flight_DepartureAirport;
-        this.flight_ArrivalAirport = flight_ArrivalAirport;
+    public Flight() {
     }
+
+// --Commented out by Inspection START (2/17/2024 10:27 PM):
+//    public Flight(String flight_No, String flight_AirlineName, String flight_Date, String flight_ScheduleDepartureTime, String flight_ScheduleArrivalTime, String flight_DepartureAirport, String flight_ArrivalAirport) {
+//        this.flight_No = flight_No;
+//        this.flight_AirlineName = flight_AirlineName;
+//        this.flight_Date = flight_Date;
+//        this.flight_ScheduleDepartureTime = flight_ScheduleDepartureTime;
+//        this.flight_ScheduleArrivalTime = flight_ScheduleArrivalTime;
+//        this.flight_DepartureAirport = flight_DepartureAirport;
+//        this.flight_ArrivalAirport = flight_ArrivalAirport;
+//    }
+// --Commented out by Inspection STOP (2/17/2024 10:27 PM)
 
     public String getFlight_No() {
         return flight_No;
@@ -83,6 +88,7 @@ public class Flight {
         this.flight_ArrivalAirport = flight_ArrivalAirport;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Flight{" +

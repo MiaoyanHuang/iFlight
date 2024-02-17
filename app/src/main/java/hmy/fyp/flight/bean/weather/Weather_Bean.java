@@ -1,5 +1,7 @@
 package hmy.fyp.flight.bean.weather;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -37,6 +39,7 @@ public class Weather_Bean {
         this.forecasts = forecasts;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "bean_weather{" +

@@ -1,7 +1,5 @@
 package hmy.fyp.flight;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,12 +9,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Objects;
+
 import hmy.fyp.flight.dao.UserDao;
 import hmy.fyp.flight.entity.User;
+import hmy.fyp.flight.utils.EncryptUtil;
 
 public class Register extends AppCompatActivity {
     private EditText account_Input, password_Input, nickName_Input;
-    private Button Back_button,Register_Button;
+    private Button Back_button, Register_Button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +39,14 @@ public class Register extends AppCompatActivity {
     /**
      * Function: Handle for register
      */
-    private final Handler hand = new Handler(Looper.myLooper())
-    {
+    private final Handler hand = new Handler(Objects.requireNonNull(Looper.myLooper())) {
         @Override
         public void handleMessage(@NonNull Message msg) {
-            if(msg.what == 0) {
-                Toast.makeText(getApplicationContext(),"Register failed",Toast.LENGTH_SHORT).show();
-            } else if(msg.what == 1) {
-                Toast.makeText(getApplicationContext(),"Account already exist",Toast.LENGTH_SHORT).show();
-            } else if(msg.what == 2) {
+            if (msg.what == 0) {
+                Toast.makeText(getApplicationContext(), "Register failed", Toast.LENGTH_SHORT).show();
+            } else if (msg.what == 1) {
+                Toast.makeText(getApplicationContext(), "Account already exist", Toast.LENGTH_SHORT).show();
+            } else if (msg.what == 2) {
                 Toast.makeText(getApplicationContext(), "Register successfully", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Register.this, Login.class);
                 startActivity(intent);
@@ -55,7 +58,7 @@ public class Register extends AppCompatActivity {
     /**
      * Function: Initialize the view
      */
-    private void initView(){
+    private void initView() {
         //Register Button Listener
         Register_Button.setOnClickListener(v -> register());
 
@@ -70,36 +73,33 @@ public class Register extends AppCompatActivity {
         String Account = account_Input.getText().toString();
         String Password = password_Input.getText().toString();
         String NickName = nickName_Input.getText().toString();
-        if (Account.equals("")){
+        if (Account.isEmpty()) {
             Toast.makeText(this, "Please input your account", Toast.LENGTH_SHORT).show();
-        } else if(NickName.equals("")){
+        } else if (NickName.isEmpty()) {
             Toast.makeText(this, "Please input your nickname", Toast.LENGTH_SHORT).show();
-        } else if(Password.equals("")){
+        } else if (Password.isEmpty()) {
             Toast.makeText(this, "Please input your password", Toast.LENGTH_SHORT).show();
         } else {
-            new Thread(){
-                @Override
-                public void run() {
-                    Message msg = new Message();
-                    UserDao userDao = new UserDao();
-                    Boolean result_query = userDao.queryAccount(Account);
-                    if(result_query){
-                        msg.what = 1; // Account Exist
+            new Thread(() -> {
+                Message msg = new Message();
+                UserDao userDao = new UserDao();
+                Boolean result_query = userDao.queryAccount(Account);
+                if (result_query) {
+                    msg.what = 1; // Account Exist
+                } else {
+                    User user = new User();
+                    user.setUserAccount(Account);
+                    user.setUserPassword(EncryptUtil.encrypt(Password, EncryptUtil.SHA_256));
+                    user.setUserName(NickName);
+                    boolean result_register = userDao.register(user, getApplicationContext());
+                    if (result_register) {
+                        msg.what = 2; // Register Successfully
                     } else {
-                        User user = new User();
-                        user.setUserAccount(Account);
-                        user.setUserPassword(Password);
-                        user.setUserName(NickName);
-                        boolean result_register = userDao.register(user, getApplicationContext());
-                        if(result_register){
-                            msg.what = 2; // Register Successfully
-                        } else {
-                            msg.what = 0; // Register Failed
-                        }
+                        msg.what = 0; // Register Failed
                     }
-                    hand.sendEmptyMessage(msg.what);
                 }
-            }.start();
+                hand.sendEmptyMessage(msg.what);
+            }).start();
         }
     }
 }

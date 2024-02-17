@@ -1,6 +1,9 @@
 package hmy.fyp.flight.bean.airfare.itineraries.buckets.items;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class PricingOptions {
@@ -38,6 +41,7 @@ public class PricingOptions {
         this.bookingProposition = bookingProposition;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PricingOptions{" +
