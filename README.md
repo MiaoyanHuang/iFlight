@@ -17,7 +17,7 @@ Hi there,
   ________________________________________________________________________________________________________________________
   * Publication Title: 2023 IEEE 11th Conference on Systems, Process & Control (ICSPC) </a>
   
-  * Paper Title: <a href = 'https://[ieeexplore.ieee.org/xpl/conhome/1803425/all-proceedings](https://ieeexplore.ieee.org/document/10420178)'> Empowering Travelers with Airfare Comparison, Flight Tracking, and Real-Time Weather Forecasts on Android
+  * Paper Title: <a href = 'https://ieeexplore.ieee.org/document/10420178'> Empowering Travelers with Airfare Comparison, Flight Tracking, and Real-Time Weather Forecasts on Android
   ________________________________________________________________________________________________________________________
 
 </p>
