@@ -1,0 +1,30 @@
+name: Require UAT Merge Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  uat-merge-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify PR branch is merged into uat
+        run: |
+          git fetch origin uat
+          PR_BRANCH="${GITHUB_HEAD_REF}"
+          BASE_BRANCH="uat"
+
+          echo "Checking if $PR_BRANCH has been merged into $BASE_BRANCH..."
+
+          if git merge-base --is-ancestor "origin/$PR_BRANCH" "origin/$BASE_BRANCH"; then
+            echo "✅ $PR_BRANCH 已经在 $BASE_BRANCH 中"
+          else
+            echo "❌ $PR_BRANCH 未合到 $BASE_BRANCH，请先合并到 UAT!"
+            exit 1
+          fi
