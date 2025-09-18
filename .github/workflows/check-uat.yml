@@ -3,7 +3,7 @@ name: Require UAT Merge Check
 on:
   pull_request:
     branches:
-      - release
+      - main
 
 jobs:
   uat-merge-check:
