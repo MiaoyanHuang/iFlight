@@ -7,6 +7,7 @@ on:
 jobs:
   add-reviewer:
     runs-on: ubuntu-latest
+    environment: prod
     steps:
       - name: Add reviewer using Miaoyan Huang token
         env:
