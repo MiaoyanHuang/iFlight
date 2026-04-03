@@ -8,9 +8,9 @@ jobs:
   add-reviewer:
     runs-on: ubuntu-latest
     steps:
-      - name: Add reviewer using user B token
+      - name: Add reviewer using Miaoyan Huang token
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_COPILOT_TOKEN }}
+          GH_TOKEN: ${{ secrets.COPILOT_TOKEN }}
         run: |
           gh pr edit ${{ github.event.pull_request.number }} \
             --add-reviewer Copilot
