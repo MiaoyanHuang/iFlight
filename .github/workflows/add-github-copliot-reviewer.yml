@@ -10,12 +10,11 @@ jobs:
     environment: prod
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Add reviewer
-        env:
-          GH_TOKEN: ${{ secrets.COPILOT_TOKEN }}
-        run: |
-          gh pr edit ${{ github.event.pull_request.number }} \
-            --add-reviewer Copilot
+    - name: Add reviewer via API
+      env:
+        GH_TOKEN: ${{ secrets.COPILOT_TOKEN }}
+      run: |
+        gh api \
+          repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/requested_reviewers \
+          -X POST \
+          -f reviewers='["Copilot"]' \
