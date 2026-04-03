@@ -1,15 +1,19 @@
 name: Add Reviewer
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, ready_for_review]
 
 jobs:
   add-reviewer:
     runs-on: ubuntu-latest
     environment: prod
+
     steps:
-      - name: Add reviewer using Miaoyan Huang token
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Add reviewer
         env:
           GH_TOKEN: ${{ secrets.COPILOT_TOKEN }}
         run: |
