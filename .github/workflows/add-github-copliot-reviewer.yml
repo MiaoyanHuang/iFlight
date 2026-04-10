@@ -2,52 +2,43 @@ name: Copilot PR Review
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, reopened, ready_for_review, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
 
 jobs:
   copilot-review:
     runs-on: ubuntu-latest
+    if: ${{ !github.event.pull_request.draft && !github.event.pull_request.head.repo.fork }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Trigger Copilot Review
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
         run: |
-          PR_NUMBER=${{ github.event.pull_request.number }}
+          set -euo pipefail
+
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          REPO="${{ github.repository }}"
+          MARKER="<!-- copilot-review-trigger -->"
 
           echo "PR number: $PR_NUMBER"
 
-          # 防重复触发
-          if gh pr view $PR_NUMBER --comments | grep -iq "@copilot review"; then
+          if gh api \
+            --method GET \
+            "/repos/$REPO/issues/$PR_NUMBER/comments?per_page=100" \
+            --jq ".[] | select(.user.login == \"github-actions[bot]\" and (.body | contains(\"$MARKER\"))) | .id" | grep -q .; then
             echo "Copilot review already triggered, skipping..."
             exit 0
           fi
 
-          cat <<'EOF' > body.txt
-@copilot review 请使用中文进行代码评审。
-  
-  你是一名对代码质量极其严格的资深后端工程师（屎山代码严父），无法容忍低质量实现。请直接指出问题，不要过度客气。
-  
-  评审重点：
-- logic 是否正确，是否存在潜在 bug 或边界问题
-- 是否存在明显的屎山代码（结构混乱、重复代码、命名不清、职责不清）
-- performance 问题（不必要的查询、低效算法、无意义对象创建等）
-- 并发问题、线程安全、事务一致性
-- 是否存在隐藏的生产风险
-  
-  特别关注：
-- Redis 缓存一致性问题
-- 事务提交前后的逻辑（afterCommit）
-- 数据同步的幂等性和一致性
-  
-  要求：
-- 直接批评问题代码，但保持专业
-- 对每个问题给出明确原因和改进建议
-- 只讲重点以及建议的改进方案，不要过多赘述，话多浪费 Token
-- 优先指出严重问题（critical issues）
-  EOF
-  
-  gh pr comment $PR_NUMBER --body-file body.txt
-env:
-  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          gh pr comment "$PR_NUMBER" \
+            --repo "$REPO" \
+            --body-file ".github/prompt/github_copilot_code_review.txt"
