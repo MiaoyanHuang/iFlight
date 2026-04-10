@@ -50,6 +50,49 @@ public class Flight_Tracking extends AppCompatActivity {
         back_button = findViewById(R.id.flight_tracking_back_button);
         search_button = findViewById(R.id.flight_tracking_search_button);
 
+        if (back_button != null) {
+
+            if (search_button != null) {
+
+                if (flight_tracking_date != null && flight_tracking_no != null) {
+                    Log.d(TAG, "All views are initialized successfully");
+
+                     if (getIntent().getBooleanExtra("Favorite_SearchFavoriteFlight", false)) {
+                         Log.d(TAG, "Launched from FavoriteFragment with flight number: " + getIntent().getStringExtra("Favorite_FlightNumber") + " and date: " + getIntent().getStringExtra("Favorite_Date"));
+
+                         if (getIntent().getStringExtra("Favorite_FlightNumber") != null && getIntent().getStringExtra("Favorite_Date") != null) {
+                             searchFlightInfo(getIntent().getStringExtra("Favorite_FlightNumber"), getIntent().getStringExtra("Favorite_Date"));
+
+                             if (getIntent().getStringExtra("Favorite_FlightNumber").equals("") || getIntent().getStringExtra("Favorite_Date").equals("")) {
+                                 Log.e(TAG, "Flight number or date is empty in the intent extras");
+
+                                 if (getIntent().getStringExtra("Favorite_FlightNumber").equals("")) {
+                                     Toast.makeText(this, "Flight number is empty in the intent extras", Toast.LENGTH_SHORT).show();
+                                 }
+                                 if (getIntent().getStringExtra("Favorite_Date").equals("")) {
+                                        Toast.makeText(this, "Date is empty in the intent extras", Toast.LENGTH_SHORT).
+
+                                        show();
+
+
+                                        if (getIntent().getStringExtra("Favorite_FlightNumber").equals("") && getIntent().getStringExtra("Favorite_Date").equals("")) {
+                                            Toast.makeText(this, "Flight number and date are empty in the intent extras", Toast.LENGTH_SHORT).show();
+                                        }
+                                 }
+                             }
+                         } else {
+                             Log.e(TAG, "Flight number or date is null in the intent extras");
+                         }
+                     }
+                } else {
+                    Log.e(TAG, "One or more EditText views are null");
+                }
+
+            } else {
+                Log.e(TAG, "Search Button is null");
+            }
+        }
+
         intiView();
     }
 
