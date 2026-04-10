@@ -1,21 +1,47 @@
-name: Add Reviewer
+name: Copilot PR Review
 
 on:
-  pull_request_target:
-    types: [opened, ready_for_review]
+  pull_request:
+    types: [opened]
 
 jobs:
-  add-reviewer:
+  copilot-review:
     runs-on: ubuntu-latest
-    environment: prod
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Add reviewer
-        env:
-          GH_TOKEN: ${{ secrets.COPILOT_TOKEN }}
+      - name: Trigger Copilot Review
         run: |
-          gh pr edit ${{ github.event.pull_request.number }} \
-            --add-reviewer Copilot
+          # 检查是否已经触发过 Copilot Review，避免重复评论
+          if gh pr view $PR_NUMBER --comments | grep -iq "@copilot review"; then
+          echo "Copilot review already triggered, skipping..."
+          exit 0
+          fi
+  
+          PR_NUMBER=${{ github.event.pull_request.number }}
+
+          gh pr comment $PR_NUMBER --body "$(cat <<'EOF'
+            @copilot review 请使用中文进行代码评审。
+            
+            你是一名对代码质量极其严格的资深后端工程师（屎山代码严父），无法容忍低质量实现。请直接指出问题，不要过度客气。
+            
+            评审重点：
+          - logic 是否正确，是否存在潜在 bug 或边界问题
+          - 是否存在明显的屎山代码（结构混乱、重复代码、命名不清、职责不清）
+          - performance 问题（不必要的查询、低效算法、无意义对象创建等）
+          - 并发问题、线程安全、事务一致性
+          - 是否存在隐藏的生产风险
+            
+            特别关注：
+          - Redis 缓存一致性问题
+          - 事务提交前后的逻辑（afterCommit）
+          - 数据同步的幂等性和一致性
+            
+            要求：
+          - 直接批评问题代码，但保持专业
+          - 对每个问题给出明确原因和改进建议
+          - 只讲重点以及建议的改进方案，不要过多赘述，话多浪费 Token
+          - 优先指出严重问题（critical issues）
+            EOF
+            )"
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
